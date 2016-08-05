@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Health Aide</string>
+    <string name="new_case">New Case</string>
+    <string name="filter_case">Filter Case</string>
 </resources>
