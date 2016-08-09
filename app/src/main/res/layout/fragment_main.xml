@@ -4,9 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <GridView
+        android:id="@+id/feature_grid_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Main Fragment" />
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="25dp" />
 
 </LinearLayout>

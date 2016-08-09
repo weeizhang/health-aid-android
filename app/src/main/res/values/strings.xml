@@ -2,4 +2,8 @@
     <string name="app_name">Health Aide</string>
     <string name="new_case">New Case</string>
     <string name="filter_case">Filter Case</string>
+    <string name="re_visiting_event">Re Visiting Event</string>
+    <string name="allergy_history">Allergy History</string>
+    <string name="export_case">Export Case</string>
+    <string name="me">Me</string>
 </resources>
