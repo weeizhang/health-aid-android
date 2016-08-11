@@ -31,7 +31,6 @@ public class MainFragment extends Fragment {
 
         featureIcons = getResources().obtainTypedArray(R.array.feature_icon);
         featureNames = getResources().obtainTypedArray(R.array.feature_label);
-
         FeatureViewAdapter featureViewAdapter = new FeatureViewAdapter(getContext(), featureIcons, featureNames);
         featureGridView.setAdapter(featureViewAdapter);
         featureGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

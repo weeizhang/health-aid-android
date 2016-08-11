@@ -6,11 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class FeatureViewAdapter extends BaseAdapter {
 
@@ -41,27 +36,15 @@ public class FeatureViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        ViewHolder holder;
+        FeatureViewHolder featureViewHolder;
         if (view != null) {
-            holder = (ViewHolder) view.getTag();
+            featureViewHolder = (FeatureViewHolder) view.getTag();
         } else {
             view = LayoutInflater.from(context).inflate(R.layout.feature_item, parent, false);
-            holder = new ViewHolder(view);
-            view.setTag(holder);
+            featureViewHolder = new FeatureViewHolder(view);
+            view.setTag(featureViewHolder);
         }
-        holder.featureIconImageView.setImageResource(getItem(position).getIconRes());
-        holder.featureNameTextView.setText(getItem(position).getName());
+        featureViewHolder.init(getItem(position));
         return view;
-    }
-
-    static class ViewHolder {
-        @BindView(R.id.feature_icon)
-        ImageView featureIconImageView;
-        @BindView(R.id.feature_name)
-        TextView featureNameTextView;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }
