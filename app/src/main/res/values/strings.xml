@@ -6,4 +6,13 @@
     <string name="allergy_history">Allergy History</string>
     <string name="export_case">Export Case</string>
     <string name="me">Me</string>
+
+    <!--New Case-->
+    <string name="symptom">Symptom</string>
+    <string name="type">Type</string>
+    <string name="therapeutic_method">Therapeutic method</string>
+    <string name="hospital">Hospital</string>
+    <string name="doctor">Doctor</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
 </resources>

@@ -6,6 +6,25 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Base.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlActivated">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="actionMenuTextColor">@color/colorWhite</item>
+        <item name="android:actionMenuTextAppearance">@style/AppTheme.ActionBarMenuText</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.ActionBarMenuText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@string/font_fontFamily_medium</item>
     </style>
 
 </resources>
