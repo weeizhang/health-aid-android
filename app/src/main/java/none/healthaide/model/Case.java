@@ -1,13 +1,52 @@
 package none.healthaide.model;
 
-public class Case {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Case implements Parcelable {
+    private String title;
     private String startDate;
     private String endDate;
     private String caseDescribe;
     private String caseType;
-    private String therapeuticMethod;
+    private String cureDescription;
     private String hospital;
     private String doctor;
+
+    protected Case(Parcel in) {
+        title = in.readString();
+        startDate = in.readString();
+        endDate = in.readString();
+        caseDescribe = in.readString();
+        caseType = in.readString();
+        cureDescription = in.readString();
+        hospital = in.readString();
+        doctor = in.readString();
+    }
+
+    public Case() {
+    }
+
+    public static final Creator<Case> CREATOR = new Creator<Case>() {
+        @Override
+        public Case createFromParcel(Parcel in) {
+            return new Case(in);
+        }
+
+        @Override
+        public Case[] newArray(int size) {
+            return new Case[size];
+        }
+    };
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Case setTitle(String title) {
+        this.title = title;
+        return this;
+    }
 
     public String getStartDate() {
         return startDate;
@@ -45,12 +84,12 @@ public class Case {
         return this;
     }
 
-    public String getTherapeuticMethod() {
-        return therapeuticMethod;
+    public String getCureDescription() {
+        return cureDescription;
     }
 
-    public Case setTherapeuticMethod(String therapeuticMethod) {
-        this.therapeuticMethod = therapeuticMethod;
+    public Case setCureDescription(String cureDescription) {
+        this.cureDescription = cureDescription;
         return this;
     }
 
@@ -70,5 +109,22 @@ public class Case {
     public Case setDoctor(String doctor) {
         this.doctor = doctor;
         return this;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeString(startDate);
+        parcel.writeString(endDate);
+        parcel.writeString(caseDescribe);
+        parcel.writeString(caseType);
+        parcel.writeString(cureDescription);
+        parcel.writeString(hospital);
+        parcel.writeString(doctor);
     }
 }

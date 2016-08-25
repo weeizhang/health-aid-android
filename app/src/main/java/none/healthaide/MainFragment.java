@@ -19,6 +19,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import none.healthaide.usercase.NewCaseFragment;
 
 public class MainFragment extends Fragment {
     public static final String TAG = NewCaseFragment.class.getSimpleName();
@@ -78,7 +79,7 @@ public class MainFragment extends Fragment {
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.action_new_case:
-                //TODO: show add new case page
+                ((MainActivity) getActivity()).replaceFragment(new NewCaseFragment(), NewCaseFragment.TAG);
                 return true;
             case R.id.action_filter_case:
                 //TODO: show search

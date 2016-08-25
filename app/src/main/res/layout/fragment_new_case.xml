@@ -17,7 +17,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingLeft="@dimen/new_case_left_and_right_padding"
+            android:paddingRight="@dimen/new_case_left_and_right_padding"
+            android:paddingTop="@dimen/new_case_top_padding">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/title"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_start_date"
@@ -75,13 +90,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_therapeutic_method"
+                android:id="@+id/input_layout_cure_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp">
 
                 <EditText
-                    android:id="@+id/input_therapeutic_method"
+                    android:id="@+id/input_cure_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/therapeutic_method"

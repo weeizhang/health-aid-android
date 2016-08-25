@@ -6,27 +6,25 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class HealthAidDbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION_VER_0_0_0 = 0;
+    private static final int DATABASE_VERSION_VER_0_0_0 = 1;
     private static final int CURRENT_DATABASE_VERSION = DATABASE_VERSION_VER_0_0_0;
 
     private static final String DATABASE_NAME = "health_aid.db";
     private static final int DATABASE_VERSION = CURRENT_DATABASE_VERSION;
 
     private static final String TEXT_TYPE = " TEXT";
-    private static final String DATE_TYPE = " DATETIME";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_CASE =
             "CREATE TABLE " + CaseContract.CaseEntry.TABLE_NAME + " (" +
                     CaseContract.CaseEntry._ID + " INTEGER PRIMARY KEY," +
-                    CaseContract.CaseEntry.COLUMN_NAME_CASE_ID + TEXT_TYPE + COMMA_SEP +
                     CaseContract.CaseEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_START_DATE + DATE_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_END_DATE + DATE_TYPE + COMMA_SEP +
+                    CaseContract.CaseEntry.COLUMN_NAME_START_DATE + TEXT_TYPE + COMMA_SEP +
+                    CaseContract.CaseEntry.COLUMN_NAME_END_DATE + TEXT_TYPE + COMMA_SEP +
                     CaseContract.CaseEntry.COLUMN_NAME_HOSPITAL + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_DOCTORE + TEXT_TYPE + COMMA_SEP +
+                    CaseContract.CaseEntry.COLUMN_NAME_DOCTOR + TEXT_TYPE + COMMA_SEP +
                     CaseContract.CaseEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
                     CaseContract.CaseEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_CURE_DEACRIPTION + TEXT_TYPE + COMMA_SEP +
+                    CaseContract.CaseEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE +
             " )";
 
     private static final String SQL_DELETE_CASE =
