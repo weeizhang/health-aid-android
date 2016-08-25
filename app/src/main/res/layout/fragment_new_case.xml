@@ -116,6 +116,15 @@
                     android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
+            <Button
+                android:id="@+id/new_case_submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/new_case_button_height"
+                android:layout_marginTop="@dimen/new_case_button_margin_top"
+                android:text="@string/submit"
+                android:textSize="@dimen/large_text_size"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/new_case_button" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
