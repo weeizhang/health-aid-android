@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import none.healthaide.model.Feature;
+
 public class FeatureViewAdapter extends BaseAdapter {
 
     private Context context;

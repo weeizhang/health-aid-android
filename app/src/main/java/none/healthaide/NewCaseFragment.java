@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,25 +17,35 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import none.healthaide.model.Case;
+import none.healthaide.utils.DateUtil;
 
 public class NewCaseFragment extends Fragment {
     public static final String TAG = MainFragment.class.getSimpleName();
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     private Unbinder unbinder;
 
+    @BindView(R.id.toolbar_actionbar)
+    Toolbar toolbar;
     @BindView(R.id.input_start_date)
     EditText startDateEditText;
     @BindView(R.id.input_end_date)
     EditText endDateEditText;
-    @BindView(R.id.toolbar_actionbar)
-    Toolbar toolbar;
+    @BindView(R.id.input_case_describe)
+    EditText caseDescribeEditText;
+    @BindView(R.id.input_case_type)
+    EditText caseTypeEditText;
+    @BindView(R.id.input_therapeutic_method)
+    EditText therapeuticMethodEditText;
+    @BindView(R.id.input_hospital)
+    EditText hospitalEditText;
+    @BindView(R.id.input_doctor)
+    EditText doctorEditText;
 
     @Nullable
     @Override
@@ -79,6 +88,20 @@ public class NewCaseFragment extends Fragment {
         createDatePickerDialog(endDateEditText).show();
     }
 
+    @OnClick(R.id.new_case_submit_button)
+    public void newCaseSubmitOnClick() {
+        Case newCase = new Case()
+                .setStartDate(startDateEditText.getText().toString())
+                .setEndDate(endDateEditText.getText().toString())
+                .setCaseDescribe(caseDescribeEditText.getText().toString())
+                .setCaseType(caseTypeEditText.getText().toString())
+                .setTherapeuticMethod(therapeuticMethodEditText.getText().toString())
+                .setHospital(hospitalEditText.getText().toString())
+                .setDoctor(doctorEditText.getText().toString());
+
+    }
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -101,9 +124,7 @@ public class NewCaseFragment extends Fragment {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        editText.setText(DateFormat.format(DATE_FORMAT,
-                                new LocalDateTime().withYear(year).withMonthOfYear(month).withDayOfMonth(day).toDate()
-                        ));
+                        editText.setText(DateUtil.dateToString(year, month, day));
                     }
                 },
                 DateTime.now().getYear(), DateTime.now().getMonthOfYear(), DateTime.now().getDayOfMonth());

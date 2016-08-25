@@ -1,4 +1,4 @@
-package none.healthaide;
+package none.healthaide.model;
 
 public class Feature {
     private int iconRes;

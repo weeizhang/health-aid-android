@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import none.healthaide.model.Feature;
 
 public class FeatureViewHolder {
     @BindView(R.id.feature_icon)
