@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
-import none.healthaide.MainFragment;
+import none.healthaide.main.MainFragment;
 import none.healthaide.R;
 import none.healthaide.model.Case;
 import none.healthaide.utils.DateUtil;

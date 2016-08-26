@@ -1,4 +1,4 @@
-package none.healthaide;
+package none.healthaide.main;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import none.healthaide.R;
 import none.healthaide.model.Feature;
 
 public class FeatureViewHolder {

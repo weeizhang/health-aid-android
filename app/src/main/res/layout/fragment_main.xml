@@ -12,11 +12,26 @@
         android:id="@+id/feature_grid_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:paddingTop="25dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
         android:stretchMode="columnWidth"
         android:verticalSpacing="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorGrey"
+        android:layout_marginTop="18dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/recent_case"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/case_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

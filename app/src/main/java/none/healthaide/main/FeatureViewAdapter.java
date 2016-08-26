@@ -1,4 +1,4 @@
-package none.healthaide;
+package none.healthaide.main;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import none.healthaide.R;
 import none.healthaide.model.Feature;
 
 public class FeatureViewAdapter extends BaseAdapter {

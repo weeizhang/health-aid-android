@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textSize="@dimen/large_text_size"
+        android:text="Title"/>
+
+    <TextView
+        android:id="@+id/describe_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_text_view"
+        android:paddingTop="6dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="Description"/>
+
+    <TextView
+        android:id="@+id/hospital_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_below="@+id/describe_text_view"
+        android:text="Hospital"/>
+
+    <TextView
+        android:id="@+id/doctor_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="4dp"
+        android:layout_toRightOf="@+id/hospital_text_view"
+        android:layout_below="@id/describe_text_view"
+        android:text="Doctor"/>
+
+</RelativeLayout>
