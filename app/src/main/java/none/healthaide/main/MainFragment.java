@@ -130,7 +130,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-
         switch (id) {
             case CASE_LIST_LOADER:
                 return new CursorLoader(

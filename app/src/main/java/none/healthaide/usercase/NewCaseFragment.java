@@ -2,7 +2,6 @@ package none.healthaide.usercase;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,17 +19,20 @@ import android.widget.EditText;
 
 import org.joda.time.DateTime;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
+import none.healthaide.data.HealthAidData;
 import none.healthaide.main.MainFragment;
 import none.healthaide.R;
 import none.healthaide.model.Case;
 import none.healthaide.utils.DateUtil;
 
-public class NewCaseFragment extends Fragment {
+public class NewCaseFragment extends Fragment implements NewCaseView{
     public static final String TAG = MainFragment.class.getSimpleName();
 
     private Unbinder unbinder;
@@ -54,15 +56,17 @@ public class NewCaseFragment extends Fragment {
     @BindView(R.id.input_doctor)
     EditText doctorEditText;
 
+    private NewCasePresenter newCasePresenter;
+
+    @Inject
+    HealthAidData healthAidData;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         ((HealthAidApplication) getActivity().getApplication()).getComponent().inject(this);
+        CaseInteractor caseInteractor = new CaseInteractor(healthAidData);
+        newCasePresenter = new NewCasePresenter(caseInteractor, this);
     }
 
     @Nullable
@@ -108,20 +112,7 @@ public class NewCaseFragment extends Fragment {
 
     @OnClick(R.id.new_case_submit_button)
     public void newCaseSubmitOnClick() {
-        Case newCase = new Case()
-                .setTitle(titleEditText.getText().toString())
-                .setStartDate(startDateEditText.getText().toString())
-                .setEndDate(endDateEditText.getText().toString())
-                .setCaseDescribe(caseDescribeEditText.getText().toString())
-                .setCaseType(caseTypeEditText.getText().toString())
-                .setCureDescription(cureDescriptionEditText.getText().toString())
-                .setHospital(hospitalEditText.getText().toString())
-                .setDoctor(doctorEditText.getText().toString());
-        Intent intent = new Intent(getActivity().getApplicationContext(), CaseService.class);
-        intent.putExtra(CaseService.NEW_CASE_EXTRA, newCase);
-        intent.setAction(CaseService.ACTION_NEW_CASE);
-        getActivity().startService(intent);
-        getFragmentManager().popBackStack();
+        newCasePresenter.submitNewCase();
     }
 
 
@@ -151,5 +142,23 @@ public class NewCaseFragment extends Fragment {
                     }
                 },
                 DateTime.now().getYear(), DateTime.now().getMonthOfYear(), DateTime.now().getDayOfMonth());
+    }
+
+    @Override
+    public Case getCase() {
+        return new Case()
+                .setTitle(titleEditText.getText().toString())
+                .setStartDate(startDateEditText.getText().toString())
+                .setEndDate(endDateEditText.getText().toString())
+                .setCaseDescribe(caseDescribeEditText.getText().toString())
+                .setCaseType(caseTypeEditText.getText().toString())
+                .setCureDescription(cureDescriptionEditText.getText().toString())
+                .setHospital(hospitalEditText.getText().toString())
+                .setDoctor(doctorEditText.getText().toString());
+    }
+
+    @Override
+    public void loadSuccess(long id) {
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 }

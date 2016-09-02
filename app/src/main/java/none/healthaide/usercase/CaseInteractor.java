@@ -1,7 +1,5 @@
 package none.healthaide.usercase;
 
-import javax.inject.Inject;
-
 import none.healthaide.data.HealthAidData;
 import none.healthaide.model.Case;
 import rx.Single;
@@ -11,10 +9,13 @@ import rx.functions.Func1;
 import static rx.android.schedulers.AndroidSchedulers.mainThread;
 import static rx.schedulers.Schedulers.io;
 
-public class CaseServiceInteractor {
+public class CaseInteractor {
 
-    @Inject
-    HealthAidData healthAidData;
+    private HealthAidData healthAidData;
+
+    public CaseInteractor(HealthAidData healthAidData) {
+        this.healthAidData = healthAidData;
+    }
 
     public interface Callback {
         void onLoadNewCaseSuccess(long id);
