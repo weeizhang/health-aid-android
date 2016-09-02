@@ -4,10 +4,11 @@ import javax.inject.Inject;
 
 import none.healthaide.data.HealthAidData;
 import none.healthaide.model.Case;
-import rx.functions.Action1;
+import rx.Single;
+import rx.SingleSubscriber;
 import rx.functions.Func1;
 
-import static rx.Observable.just;
+import static rx.android.schedulers.AndroidSchedulers.mainThread;
 import static rx.schedulers.Schedulers.io;
 
 public class CaseServiceInteractor {
@@ -21,22 +22,25 @@ public class CaseServiceInteractor {
         void onLoadNewCaseFailed();
     }
 
-    public void storeNewCase(Case newCase, final Callback callback) {
-        just(newCase).observeOn(io()).map(new Func1<Case, Long>() {
-            @Override
-            public Long call(Case newCase) {
-                return healthAidData.insertCase(newCase);
-            }
-        }).subscribe(new Action1<Long>() {
-            @Override
-            public void call(Long id) {
-                callback.onLoadNewCaseSuccess(id);
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                callback.onLoadNewCaseFailed();
-            }
-        });
+    public void storeNewCase(final Case newCase, final Callback callback) {
+        Single.just("").observeOn(io())
+                .map(new Func1<String, Long>() {
+                    @Override
+                    public Long call(String s) {
+                        return healthAidData.insertCase(newCase);
+                    }
+                })
+                .observeOn(mainThread())
+                .subscribe(new SingleSubscriber<Long>() {
+                    @Override
+                    public void onSuccess(Long id) {
+                        callback.onLoadNewCaseSuccess(id);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onLoadNewCaseFailed();
+                    }
+                });
     }
 }

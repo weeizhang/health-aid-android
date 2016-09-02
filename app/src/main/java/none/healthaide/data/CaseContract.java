@@ -1,8 +1,16 @@
 package none.healthaide.data;
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 public final class CaseContract {
+
+    public static final String SCHEME = "content";
+    public static final String AUTHORITY = "none.healthaide.data";
+    public static final Uri CONTENT_URI = Uri.parse(SCHEME + "://" + AUTHORITY);
+
+    public static final Uri CASE_TABLE_CONTENTURI =
+            Uri.withAppendedPath(CONTENT_URI, CaseEntry.TABLE_NAME);
 
     public CaseContract() {
     }

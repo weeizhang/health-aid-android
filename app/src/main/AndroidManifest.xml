@@ -20,6 +20,11 @@
         <service
             android:name=".usercase.CaseService"
             android:exported="false" />
+
+        <provider
+            android:name=".data.DataProvider"
+            android:authorities="none.healthaide.data"
+            android:exported="false" />
     </application>
 
 </manifest>

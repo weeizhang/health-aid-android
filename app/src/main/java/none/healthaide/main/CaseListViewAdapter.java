@@ -20,6 +20,10 @@ public class CaseListViewAdapter extends RecyclerView.Adapter<RecentCaseViewHold
         this.caseList = caseList;
     }
 
+    public void setCaseList(List<Case> caseList) {
+        this.caseList = caseList;
+    }
+
     @Override
     public RecentCaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RecentCaseViewHolder(LayoutInflater.from(context).inflate(R.layout.case_item_view, parent, false));

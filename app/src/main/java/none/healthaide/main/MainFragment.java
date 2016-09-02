@@ -1,9 +1,13 @@
 package none.healthaide.main;
 
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,12 +31,15 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import none.healthaide.MainActivity;
 import none.healthaide.R;
+import none.healthaide.data.CaseContract;
+import none.healthaide.data.CaseCursor;
 import none.healthaide.model.Case;
 import none.healthaide.usercase.NewCaseFragment;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final String TAG = NewCaseFragment.class.getSimpleName();
 
+    private static final int CASE_LIST_LOADER = 0;
     public static final int NEW_CASE_INDEX = 0;
 
     @BindView(R.id.toolbar_actionbar)
@@ -46,6 +53,7 @@ public class MainFragment extends Fragment {
     private TypedArray featureIcons;
     private TypedArray featureNames;
 
+    private CaseListViewAdapter caseListViewAdapter;
     private List<Case> caseList = Lists.newArrayList();
 
     @Override
@@ -55,9 +63,9 @@ public class MainFragment extends Fragment {
 
         initActionBar();
         createFeatureGridView();
-        caseList.add(new Case().setTitle("Title1").setCaseDescribe("Description1").setHospital("Xijing").setDoctor("Doctor"));
-        caseList.add(new Case().setTitle("Title2").setCaseDescribe("Description2").setHospital("Xijing").setDoctor("Doctor"));
         createRecentCaseView();
+
+        getLoaderManager().initLoader(CASE_LIST_LOADER, null, this);
 
         return view;
     }
@@ -83,7 +91,7 @@ public class MainFragment extends Fragment {
 
     private void createRecentCaseView() {
         caseRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        CaseListViewAdapter caseListViewAdapter = new CaseListViewAdapter(getActivity(), caseList);
+        caseListViewAdapter = new CaseListViewAdapter(getActivity(), caseList);
         caseRecycleView.setAdapter(caseListViewAdapter);
     }
 
@@ -118,5 +126,40 @@ public class MainFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+
+        switch (id) {
+            case CASE_LIST_LOADER:
+                return new CursorLoader(
+                        getActivity(), CaseContract.CASE_TABLE_CONTENTURI, null, null, null, null);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null && data.moveToFirst()) {
+            caseList.clear();
+            do {
+                CaseCursor caseCursor = new CaseCursor(data);
+                caseList.add(new Case()
+                        .setTitle(caseCursor.getTitle())
+                        .setCaseDescribe(caseCursor.getCaseDescribe())
+                        .setHospital(caseCursor.getHospital())
+                        .setDoctor(caseCursor.getDoctor()));
+            } while (data.moveToNext());
+
+            caseListViewAdapter.setCaseList(caseList);
+            caseListViewAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
