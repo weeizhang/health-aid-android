@@ -5,4 +5,16 @@
     <string name="allergy_history">过敏史</string>
     <string name="export_case">导出病例</string>
     <string name="me">我</string>
+    <string name="app_name">健康助手</string>
+    <string name="doctor">医生</string>
+    <string name="end_date">康复时间</string>
+    <string name="filter_case">过滤病例</string>
+    <string name="hospital">医院</string>
+    <string name="recent_case">近期病例</string>
+    <string name="start_date">开始时间</string>
+    <string name="submit">提交</string>
+    <string name="symptom">症状</string>
+    <string name="therapeutic_method">治疗方法</string>
+    <string name="title">标题</string>
+    <string name="type">类型</string>
 </resources>
