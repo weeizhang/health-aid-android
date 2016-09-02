@@ -7,7 +7,19 @@
     <dimen name="new_case_button_height">50dp</dimen>
     <dimen name="new_case_left_and_right_padding">16dp</dimen>
     <dimen name="top_padding">8dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+
+    <dimen name="space_4">4dp</dimen>
+    <dimen name="space_6">6dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_10">10dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_18">18dp</dimen>
+    <dimen name="space_25">25dp</dimen>
 
     <!--Text Size-->
     <dimen name="large_text_size">16sp</dimen>
+    <dimen name="medium_text_size">14sp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
 </resources>

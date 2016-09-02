@@ -9,7 +9,7 @@ import butterknife.ButterKnife;
 import none.healthaide.R;
 import none.healthaide.model.Case;
 
-public class RecentCaseViewHolder extends RecyclerView.ViewHolder{
+public class RecentCaseViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.title_text_view)
     TextView titleView;
@@ -19,6 +19,8 @@ public class RecentCaseViewHolder extends RecyclerView.ViewHolder{
     TextView hospitalView;
     @BindView(R.id.doctor_text_view)
     TextView doctorView;
+    @BindView(R.id.start_date_text_view)
+    TextView startDateView;
 
     public RecentCaseViewHolder(View view) {
         super(view);
@@ -30,5 +32,6 @@ public class RecentCaseViewHolder extends RecyclerView.ViewHolder{
         describeView.setText(caseItem.getCaseDescribe());
         hospitalView.setText(caseItem.getHospital());
         doctorView.setText(caseItem.getDoctor());
+        startDateView.setText(caseItem.getStartDate());
     }
 }

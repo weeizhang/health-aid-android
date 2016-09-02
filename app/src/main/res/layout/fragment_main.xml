@@ -12,26 +12,27 @@
         android:id="@+id/feature_grid_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="25dp"
+        android:paddingTop="@dimen/space_25"
         android:gravity="center"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="@dimen/space_10"
         android:numColumns="3"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="25dp" />
+        android:verticalSpacing="@dimen/space_25" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorGrey"
-        android:layout_marginTop="18dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
+        android:layout_marginTop="@dimen/space_18"
+        android:paddingLeft="@dimen/space_16"
+        android:paddingRight="@dimen/space_16"
+        android:paddingTop="@dimen/space_16"
         android:text="@string/recent_case"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/case_list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/space_16"/>
 
 </LinearLayout>

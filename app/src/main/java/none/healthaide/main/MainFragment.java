@@ -147,6 +147,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
                 CaseCursor caseCursor = new CaseCursor(data);
                 caseList.add(new Case()
                         .setTitle(caseCursor.getTitle())
+                        .setStartDate(caseCursor.getStartDate())
                         .setCaseDescribe(caseCursor.getCaseDescribe())
                         .setHospital(caseCursor.getHospital())
                         .setDoctor(caseCursor.getDoctor()));
