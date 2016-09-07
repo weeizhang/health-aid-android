@@ -2,10 +2,10 @@ package none.healthaide.usercase;
 
 import none.healthaide.data.HealthAidData;
 import none.healthaide.model.Case;
-import rx.Single;
 import rx.SingleSubscriber;
 import rx.functions.Func1;
 
+import static rx.Single.just;
 import static rx.android.schedulers.AndroidSchedulers.mainThread;
 import static rx.schedulers.Schedulers.io;
 
@@ -24,7 +24,7 @@ public class CaseInteractor {
     }
 
     public void storeNewCase(final Case newCase, final Callback callback) {
-        Single.just("").observeOn(io())
+        just("").observeOn(io())
                 .map(new Func1<String, Long>() {
                     @Override
                     public Long call(String s) {

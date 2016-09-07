@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -26,13 +27,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
+import none.healthaide.R;
 import none.healthaide.data.HealthAidData;
 import none.healthaide.main.MainFragment;
-import none.healthaide.R;
 import none.healthaide.model.Case;
 import none.healthaide.utils.DateUtil;
 
-public class NewCaseFragment extends Fragment implements NewCaseView{
+public class NewCaseFragment extends Fragment implements NewCaseView {
     public static final String TAG = MainFragment.class.getSimpleName();
 
     private Unbinder unbinder;
@@ -112,6 +113,11 @@ public class NewCaseFragment extends Fragment implements NewCaseView{
 
     @OnClick(R.id.new_case_submit_button)
     public void newCaseSubmitOnClick() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         newCasePresenter.submitNewCase();
     }
 
