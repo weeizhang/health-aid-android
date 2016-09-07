@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="new_case">新病例</string>
-    <string name="re_visiting_event">复诊提醒</string>
+    <string name="revisiting_event">复诊提醒</string>
     <string name="allergy_history">过敏史</string>
     <string name="export_case">导出病例</string>
     <string name="me">我</string>

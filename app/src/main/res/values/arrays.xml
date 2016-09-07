@@ -9,7 +9,7 @@
     </array>
     <array name="feature_label">
         <item>@string/new_case</item>
-        <item>@string/re_visiting_event</item>
+        <item>@string/revisiting_event</item>
         <item>@string/allergy_history</item>
         <item>@string/export_case</item>
         <item>@string/me</item>

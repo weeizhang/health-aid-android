@@ -34,13 +34,15 @@ import none.healthaide.R;
 import none.healthaide.data.CaseContract;
 import none.healthaide.data.CaseCursor;
 import none.healthaide.model.Case;
+import none.healthaide.revisting.RevisitingFragment;
 import none.healthaide.usercase.NewCaseFragment;
 
 public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-    public static final String TAG = NewCaseFragment.class.getSimpleName();
+    public static final String TAG = MainFragment.class.getSimpleName();
 
     private static final int CASE_LIST_LOADER = 0;
     public static final int NEW_CASE_INDEX = 0;
+    public static final int REVISITING_INDEX = 1;
 
     @BindView(R.id.toolbar_actionbar)
     Toolbar toolbar;
@@ -81,6 +83,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
                 switch (position) {
                     case NEW_CASE_INDEX:
                         ((MainActivity) MainFragment.this.getActivity()).replaceFragment(new NewCaseFragment(), NewCaseFragment.TAG);
+                        break;
+                    case REVISITING_INDEX:
+                        ((MainActivity) MainFragment.this.getActivity()).replaceFragment(new RevisitingFragment(), RevisitingFragment.TAG);
                         break;
                     default:
                         Toast.makeText(MainFragment.this.getContext(), "This is " + position + " feature", Toast.LENGTH_SHORT).show();

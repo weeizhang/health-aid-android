@@ -29,12 +29,11 @@ import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
 import none.healthaide.R;
 import none.healthaide.data.HealthAidData;
-import none.healthaide.main.MainFragment;
 import none.healthaide.model.Case;
 import none.healthaide.utils.DateUtil;
 
 public class NewCaseFragment extends Fragment implements NewCaseView {
-    public static final String TAG = MainFragment.class.getSimpleName();
+    public static final String TAG = NewCaseFragment.class.getSimpleName();
 
     private Unbinder unbinder;
 

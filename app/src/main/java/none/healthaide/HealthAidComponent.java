@@ -4,6 +4,7 @@ package none.healthaide;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import none.healthaide.revisting.RevisitingFragment;
 import none.healthaide.usercase.NewCaseFragment;
 
 @Singleton
@@ -12,4 +13,6 @@ public interface HealthAidComponent {
     void inject(HealthAidApplication application);
 
     void inject(NewCaseFragment newCaseFragment);
+
+    void inject(RevisitingFragment revisitingFragment);
 }
