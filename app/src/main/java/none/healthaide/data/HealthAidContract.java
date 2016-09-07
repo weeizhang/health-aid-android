@@ -3,7 +3,7 @@ package none.healthaide.data;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-public final class CaseContract {
+public final class HealthAidContract {
 
     public static final String SCHEME = "content";
     public static final String AUTHORITY = "none.healthaide.data";
@@ -12,7 +12,7 @@ public final class CaseContract {
     public static final Uri CASE_TABLE_CONTENTURI =
             Uri.withAppendedPath(CONTENT_URI, CaseEntry.TABLE_NAME);
 
-    public CaseContract() {
+    public HealthAidContract() {
     }
 
     public static abstract class CaseEntry implements BaseColumns {

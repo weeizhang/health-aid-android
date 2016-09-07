@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import none.healthaide.data.HealthAidContract.CaseEntry;
+
 public class HealthAidDbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION_VER_0_0_0 = 1;
@@ -15,20 +17,20 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_CASE =
-            "CREATE TABLE " + CaseContract.CaseEntry.TABLE_NAME + " (" +
-                    CaseContract.CaseEntry._ID + " INTEGER PRIMARY KEY," +
-                    CaseContract.CaseEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_START_DATE + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_END_DATE + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_HOSPITAL + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_DOCTOR + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
-                    CaseContract.CaseEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE +
+            "CREATE TABLE " + CaseEntry.TABLE_NAME + " (" +
+                    CaseEntry._ID + " INTEGER PRIMARY KEY," +
+                    CaseEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_START_DATE + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_END_DATE + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_HOSPITAL + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_DOCTOR + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE +
             " )";
 
     private static final String SQL_DELETE_CASE =
-            "DROP TABLE IF EXISTS " + CaseContract.CaseEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + CaseEntry.TABLE_NAME;
 
 
     public HealthAidDbHelper(Context context) {

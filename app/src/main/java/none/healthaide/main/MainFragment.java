@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import none.healthaide.MainActivity;
 import none.healthaide.R;
-import none.healthaide.data.CaseContract;
+import none.healthaide.data.HealthAidContract;
 import none.healthaide.data.CaseCursor;
 import none.healthaide.model.Case;
 import none.healthaide.revisting.RevisitingFragment;
@@ -138,7 +138,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         switch (id) {
             case CASE_LIST_LOADER:
                 return new CursorLoader(
-                        getActivity(), CaseContract.CASE_TABLE_CONTENTURI, null, null, null, null);
+                        getActivity(), HealthAidContract.CASE_TABLE_CONTENTURI, null, null, null, null);
             default:
                 return null;
         }

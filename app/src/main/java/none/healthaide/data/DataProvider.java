@@ -20,8 +20,8 @@ public class DataProvider extends ContentProvider {
         uriMatcher = new UriMatcher(0);
 
         uriMatcher.addURI(
-                CaseContract.AUTHORITY,
-                CaseContract.CaseEntry.TABLE_NAME,
+                HealthAidContract.AUTHORITY,
+                HealthAidContract.CaseEntry.TABLE_NAME,
                 CASE_QUERY);
     }
 
@@ -37,7 +37,7 @@ public class DataProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             case CASE_QUERY:
                 Cursor cursor = healthAidDbHelper.getReadableDatabase().query(
-                        CaseContract.CaseEntry.TABLE_NAME,
+                        HealthAidContract.CaseEntry.TABLE_NAME,
                         projection,
                         null, null, null, null, null);
                 cursor.setNotificationUri(getContext().getContentResolver(), uri);

@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import none.healthaide.data.CaseContract.CaseEntry;
+import none.healthaide.data.HealthAidContract.CaseEntry;
 import none.healthaide.model.Case;
 
 public class HealthAidData {
@@ -32,7 +32,7 @@ public class HealthAidData {
 
         long newRowId = db.insert(CaseEntry.TABLE_NAME, null, values);
         db.close();
-        context.getContentResolver().notifyChange(CaseContract.CASE_TABLE_CONTENTURI, null);
+        context.getContentResolver().notifyChange(HealthAidContract.CASE_TABLE_CONTENTURI, null);
         return newRowId;
     }
 }
