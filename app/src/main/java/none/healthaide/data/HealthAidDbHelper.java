@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import none.healthaide.data.HealthAidContract.CaseEntry;
+import none.healthaide.data.HealthAidContract.RevisitingEventEntry;
 
 public class HealthAidDbHelper extends SQLiteOpenHelper {
 
@@ -14,6 +15,7 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "health_aid.db";
     private static final int DATABASE_VERSION = CURRENT_DATABASE_VERSION;
 
+    private static final String INTEGER_TYPE = " INTEGER";
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_CASE =
@@ -27,10 +29,22 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
                     CaseEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
                     CaseEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
                     CaseEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE +
-            " )";
+                    " )";
 
     private static final String SQL_DELETE_CASE =
             "DROP TABLE IF EXISTS " + CaseEntry.TABLE_NAME;
+
+    private static final String SQL_CREATE_REVISITING_EVNET =
+            "CREATE TABLE " + RevisitingEventEntry.TABLE_NAME + " (" +
+                    RevisitingEventEntry._ID + " INTEGER PRIMARY KEY," +
+                    RevisitingEventEntry.COLUMN_NAME_CASE_ID + INTEGER_TYPE + COMMA_SEP +
+                    RevisitingEventEntry.COLUMN_NAME_REVISITING_DATE + TEXT_TYPE + COMMA_SEP +
+                    "FOREIGN KEY(" + RevisitingEventEntry.COLUMN_NAME_CASE_ID + ") REFERENCES "
+                    + CaseEntry.TABLE_NAME + "(" + CaseEntry._ID + ")" +
+                    " )";
+
+    private static final String SQL_DELETE_REVISITING_EVNET =
+            "DROP TABLE IF EXISTS " + RevisitingEventEntry.TABLE_NAME;
 
 
     public HealthAidDbHelper(Context context) {
@@ -40,12 +54,17 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_CASE);
+        db.execSQL(SQL_CREATE_REVISITING_EVNET);
+//        db.execSQL("INSERT INTO user_case VALUES (0,\"title\",\"20160920\",\"20160930\",\"hospital\",\"doctor\",\"description\",\"type\",\"cure description\");");
+//        db.execSQL("INSERT INTO revisiting_event VALUES (0,0,\"20161030\");");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_CASE);
+        db.execSQL(SQL_DELETE_REVISITING_EVNET);
         db.execSQL(SQL_CREATE_CASE);
+        db.execSQL(SQL_CREATE_REVISITING_EVNET);
     }
 
     @Override

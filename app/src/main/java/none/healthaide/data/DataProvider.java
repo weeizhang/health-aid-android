@@ -7,10 +7,13 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
+import none.healthaide.data.HealthAidContract.CaseEntry;
+import none.healthaide.data.HealthAidContract.RevisitingEventEntry;
+
 public class DataProvider extends ContentProvider {
 
     public static final int CASE_QUERY = 1;
-    public static final int INVALID_URI = -1;
+    public static final int REVISITING_EVENT_QUERY = 2;
 
     private static final UriMatcher uriMatcher;
 
@@ -21,8 +24,12 @@ public class DataProvider extends ContentProvider {
 
         uriMatcher.addURI(
                 HealthAidContract.AUTHORITY,
-                HealthAidContract.CaseEntry.TABLE_NAME,
+                CaseEntry.TABLE_NAME,
                 CASE_QUERY);
+        uriMatcher.addURI(
+                HealthAidContract.AUTHORITY,
+                RevisitingEventEntry.TABLE_NAME,
+                REVISITING_EVENT_QUERY);
     }
 
     @Override
@@ -34,18 +41,11 @@ public class DataProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        switch (uriMatcher.match(uri)) {
-            case CASE_QUERY:
-                Cursor cursor = healthAidDbHelper.getReadableDatabase().query(
-                        HealthAidContract.CaseEntry.TABLE_NAME,
-                        projection,
-                        null, null, null, null, null);
-                cursor.setNotificationUri(getContext().getContentResolver(), uri);
-                return cursor;
-            case INVALID_URI:
-                throw new IllegalArgumentException("Query -- Invalid URI:" + uri);
-        }
-        return null;
+        QueryParams queryParams = getQueryParams(uri, selection, projection);
+        Cursor res = healthAidDbHelper.getReadableDatabase().query(queryParams.tablesWithJoins, projection, queryParams.selection, selectionArgs, null,
+                null, sortOrder == null ? queryParams.orderBy : sortOrder);
+        res.setNotificationUri(getContext().getContentResolver(), uri);
+        return res;
     }
 
     @Nullable
@@ -68,5 +68,32 @@ public class DataProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
         return 0;
+    }
+
+    private static class QueryParams {
+        public String table;
+        public String tablesWithJoins;
+        public String selection;
+        public String orderBy;
+    }
+
+    private QueryParams getQueryParams(Uri uri, String selection, String[] projection) {
+        QueryParams params = new QueryParams();
+        int matchedId = uriMatcher.match(uri);
+        switch (matchedId) {
+            case CASE_QUERY:
+                params.table = CaseEntry.TABLE_NAME;
+                params.tablesWithJoins = CaseEntry.TABLE_NAME;
+                params.selection = selection;
+                break;
+            case REVISITING_EVENT_QUERY:
+                params.table = RevisitingEventEntry.TABLE_NAME;
+                params.tablesWithJoins = RevisitingEventEntry.TABLE_NAME;
+                params.tablesWithJoins += " JOIN " + CaseEntry.TABLE_NAME + " ON " + CaseEntry.TABLE_NAME + "." + CaseEntry._ID + "=" + RevisitingEventEntry.TABLE_NAME + "." + RevisitingEventEntry.COLUMN_NAME_CASE_ID;
+                break;
+            default:
+                throw new IllegalArgumentException("The uri '" + uri + "' is not supported by this ContentProvider");
+        }
+        return params;
     }
 }

@@ -12,6 +12,7 @@ public class Case implements Parcelable {
     private String cureDescription;
     private String hospital;
     private String doctor;
+    private String revisitingDate;
 
     protected Case(Parcel in) {
         title = in.readString();
@@ -22,6 +23,7 @@ public class Case implements Parcelable {
         cureDescription = in.readString();
         hospital = in.readString();
         doctor = in.readString();
+        revisitingDate = in.readString();
     }
 
     public Case() {
@@ -111,6 +113,15 @@ public class Case implements Parcelable {
         return this;
     }
 
+    public String getRevisitingDate() {
+        return revisitingDate;
+    }
+
+    public Case setRevisitingDate(String revisitingDate) {
+        this.revisitingDate = revisitingDate;
+        return this;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -126,5 +137,6 @@ public class Case implements Parcelable {
         parcel.writeString(cureDescription);
         parcel.writeString(hospital);
         parcel.writeString(doctor);
+        parcel.writeString(revisitingDate);
     }
 }

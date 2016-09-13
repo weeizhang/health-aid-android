@@ -32,7 +32,7 @@ public class HealthAidData {
 
         long newRowId = db.insert(CaseEntry.TABLE_NAME, null, values);
         db.close();
-        context.getContentResolver().notifyChange(HealthAidContract.CASE_TABLE_CONTENTURI, null);
+        context.getContentResolver().notifyChange(HealthAidContract.CASE_TABLE_CONTENT_URI, null);
         return newRowId;
     }
 }

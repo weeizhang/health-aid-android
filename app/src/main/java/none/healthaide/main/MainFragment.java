@@ -138,7 +138,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         switch (id) {
             case CASE_LIST_LOADER:
                 return new CursorLoader(
-                        getActivity(), HealthAidContract.CASE_TABLE_CONTENTURI, null, null, null, null);
+                        getActivity(), HealthAidContract.CASE_TABLE_CONTENT_URI, null, null, null, null);
             default:
                 return null;
         }
