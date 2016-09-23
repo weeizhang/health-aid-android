@@ -22,4 +22,7 @@
     <dimen name="large_text_size">16sp</dimen>
     <dimen name="medium_text_size">14sp</dimen>
     <dimen name="small_text_size">12sp</dimen>
+
+    <!--Main Page-->
+    <dimen name="main_feature_grid_view_height">190dp</dimen>
 </resources>

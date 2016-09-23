@@ -9,31 +9,43 @@
         android:id="@+id/tool_bar"
         layout="@layout/toolbar" />
 
-    <GridView
-        android:id="@+id/feature_grid_view"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/space_25"
-        android:gravity="center"
-        android:horizontalSpacing="@dimen/space_10"
-        android:numColumns="3"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="@dimen/space_25" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorGrey"
-        android:layout_marginTop="@dimen/space_18"
-        android:paddingLeft="@dimen/space_16"
-        android:paddingRight="@dimen/space_16"
-        android:paddingTop="@dimen/space_16"
-        android:text="@string/recent_case"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/case_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/space_16"/>
+            <GridView
+                android:id="@+id/feature_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_feature_grid_view_height"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/space_10"
+                android:numColumns="3"
+                android:paddingTop="@dimen/space_25"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/space_25" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_18"
+                android:paddingLeft="@dimen/space_16"
+                android:paddingRight="@dimen/space_16"
+                android:paddingTop="@dimen/space_16"
+                android:text="@string/recent_case"
+                android:textColor="@color/colorGrey" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/case_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/space_16" />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

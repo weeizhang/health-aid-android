@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -40,6 +41,8 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
     Toolbar toolbar;
     @BindView(R.id.revisiting_event_list_view)
     RecyclerView revisitingRecyclerView;
+    @BindView(R.id.add_revisiting_event_button)
+    FloatingActionButton addButton;
 
     private RevisitingListViewAdapter revisitingListViewAdapter;
     private List<Case> caseList = Lists.newArrayList();
