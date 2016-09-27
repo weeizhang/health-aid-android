@@ -14,10 +14,12 @@ public class CaseListViewAdapter extends RecyclerView.Adapter<RecentCaseViewHold
 
     private List<Case> caseList;
     private Context context;
+    private  RecentCaseViewHolder.Callback callback;
 
-    public CaseListViewAdapter(Context context, List<Case> caseList) {
+    public CaseListViewAdapter(Context context, List<Case> caseList, RecentCaseViewHolder.Callback callback) {
         this.context = context;
         this.caseList = caseList;
+        this.callback = callback;
     }
 
     public void setCaseList(List<Case> caseList) {
@@ -26,7 +28,7 @@ public class CaseListViewAdapter extends RecyclerView.Adapter<RecentCaseViewHold
 
     @Override
     public RecentCaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RecentCaseViewHolder(LayoutInflater.from(context).inflate(R.layout.case_item_view, parent, false));
+        return new RecentCaseViewHolder(LayoutInflater.from(context).inflate(R.layout.case_item_view, parent, false), callback);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Case implements Parcelable {
+    private Integer id;
     private String title;
     private String startDate;
     private String endDate;
@@ -15,6 +16,7 @@ public class Case implements Parcelable {
     private String revisitingDate;
 
     protected Case(Parcel in) {
+        id = in.readInt();
         title = in.readString();
         startDate = in.readString();
         endDate = in.readString();
@@ -40,6 +42,15 @@ public class Case implements Parcelable {
             return new Case[size];
         }
     };
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Case setId(Integer id) {
+        this.id = id;
+        return this;
+    }
 
     public String getTitle() {
         return title;
@@ -129,6 +140,7 @@ public class Case implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
         parcel.writeString(title);
         parcel.writeString(startDate);
         parcel.writeString(endDate);

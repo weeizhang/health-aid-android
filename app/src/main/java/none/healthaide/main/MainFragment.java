@@ -35,14 +35,16 @@ import none.healthaide.data.HealthAidContract;
 import none.healthaide.data.CaseCursor;
 import none.healthaide.model.Case;
 import none.healthaide.revisting.RevisitingFragment;
+import none.healthaide.usercase.CaseDetailFragment;
 import none.healthaide.usercase.NewCaseFragment;
 
-public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, RecentCaseViewHolder.Callback {
     public static final String TAG = MainFragment.class.getSimpleName();
 
     private static final int CASE_LIST_LOADER = 0;
     public static final int NEW_CASE_INDEX = 0;
     public static final int REVISITING_INDEX = 1;
+    public static final String CASE_ID = "case_id";
 
     @BindView(R.id.toolbar_actionbar)
     Toolbar toolbar;
@@ -96,7 +98,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     private void createRecentCaseView() {
         caseRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        caseListViewAdapter = new CaseListViewAdapter(getActivity(), caseList);
+        caseListViewAdapter = new CaseListViewAdapter(getActivity(), caseList, this);
         caseRecycleView.setAdapter(caseListViewAdapter);
     }
 
@@ -121,7 +123,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
                 ((MainActivity) getActivity()).replaceFragment(new NewCaseFragment(), NewCaseFragment.TAG);
                 return true;
             case R.id.action_filter_case:
-                //TODO: show search
+                ((MainActivity) getActivity()).replaceFragment(new SearchFragment(), NewCaseFragment.TAG);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -151,6 +153,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
             do {
                 CaseCursor caseCursor = new CaseCursor(data);
                 caseList.add(new Case()
+                        .setId(caseCursor.getId())
                         .setTitle(caseCursor.getTitle())
                         .setStartDate(caseCursor.getStartDate())
                         .setCaseDescribe(caseCursor.getCaseDescribe())
@@ -166,5 +169,14 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    public void onCaseSelected(Integer caseId) {
+        CaseDetailFragment fragment = new CaseDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(CASE_ID, caseId);
+        fragment.setArguments(bundle);
+        ((MainActivity) getActivity()).replaceFragment(fragment, CaseDetailFragment.TAG);
     }
 }

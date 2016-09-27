@@ -13,6 +13,11 @@ public class CaseCursor extends CursorWrapper {
         this.cursor = cursor;
     }
 
+    public Integer getId() {
+        int columnIndex = cursor.getColumnIndex(CaseEntry._ID);
+        return getInt(columnIndex);
+    }
+
     public String getTitle() {
         int columnIndex = cursor.getColumnIndex(CaseEntry.COLUMN_NAME_TITLE);
         return getString(columnIndex);
