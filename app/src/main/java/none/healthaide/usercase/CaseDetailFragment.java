@@ -1,6 +1,7 @@
 package none.healthaide.usercase;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +48,8 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
     EditText hospitalEditText;
     @BindView(R.id.input_doctor)
     EditText doctorEditText;
+    @BindView(R.id.case_image_view)
+    ImageView photoImageView;
 
     @Nullable
     @Override
@@ -101,6 +105,7 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
             cureDescriptionEditText.setText(caseCursor.getCureDescription());
             hospitalEditText.setText(caseCursor.getHospital());
             doctorEditText.setText(caseCursor.getDoctor());
+            photoImageView.setImageURI(Uri.parse(caseCursor.getPhotoUriStr()));
         }
     }
 

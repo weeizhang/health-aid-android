@@ -29,6 +29,7 @@ public class HealthAidData {
         values.put(CaseEntry.COLUMN_NAME_HOSPITAL, newCase.getHospital());
         values.put(CaseEntry.COLUMN_NAME_DOCTOR, newCase.getDoctor());
         values.put(CaseEntry.COLUMN_NAME_CURE_DESCRIPTION, newCase.getCureDescription());
+        values.put(CaseEntry.COLUMN_NAME_PHOTO_URI, newCase.getPhotoUriStr());
 
         long newRowId = db.insert(CaseEntry.TABLE_NAME, null, values);
         db.close();

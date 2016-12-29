@@ -14,6 +14,7 @@ public class Case implements Parcelable {
     private String hospital;
     private String doctor;
     private String revisitingDate;
+    private String photoUriStr;
 
     protected Case(Parcel in) {
         id = in.readInt();
@@ -26,6 +27,7 @@ public class Case implements Parcelable {
         hospital = in.readString();
         doctor = in.readString();
         revisitingDate = in.readString();
+        photoUriStr = in.readString();
     }
 
     public Case() {
@@ -133,6 +135,15 @@ public class Case implements Parcelable {
         return this;
     }
 
+    public String getPhotoUriStr() {
+        return photoUriStr;
+    }
+
+    public Case setPhotoUriStr(String photoUriStr) {
+        this.photoUriStr = photoUriStr;
+        return this;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -150,5 +161,6 @@ public class Case implements Parcelable {
         parcel.writeString(hospital);
         parcel.writeString(doctor);
         parcel.writeString(revisitingDate);
+        parcel.writeString(photoUriStr);
     }
 }

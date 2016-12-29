@@ -57,4 +57,9 @@ public class CaseCursor extends CursorWrapper {
         int columnIndex = cursor.getColumnIndex(CaseEntry.COLUMN_NAME_DOCTOR);
         return getString(columnIndex);
     }
+
+    public String getPhotoUriStr() {
+        int columnIndex = cursor.getColumnIndex(CaseEntry.COLUMN_NAME_PHOTO_URI);
+        return getString(columnIndex);
+    }
 }

@@ -1,7 +1,10 @@
 package none.healthaide.usercase;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import org.joda.time.DateTime;
 
@@ -34,6 +38,8 @@ import none.healthaide.utils.DateUtil;
 
 public class NewCaseFragment extends Fragment implements NewCaseView {
     public static final String TAG = NewCaseFragment.class.getSimpleName();
+
+    private static final int SELECT_PICTURE = 1;
 
     private Unbinder unbinder;
 
@@ -55,7 +61,10 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
     EditText hospitalEditText;
     @BindView(R.id.input_doctor)
     EditText doctorEditText;
+    @BindView(R.id.case_image_view)
+    ImageView uploadCaseImage;
 
+    private Uri photoUri;
     private NewCasePresenter newCasePresenter;
 
     @Inject
@@ -100,6 +109,16 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SELECT_PICTURE) {
+            if (resultCode == Activity.RESULT_OK) {
+                photoUri = data.getData();
+                uploadCaseImage.setImageURI(photoUri);
+            }
+        }
+    }
+
     @OnClick(R.id.input_start_date)
     public void startDateOnClick() {
         createDatePickerDialog(startDateEditText).show();
@@ -108,6 +127,15 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
     @OnClick(R.id.input_end_date)
     public void endDateOnClick() {
         createDatePickerDialog(endDateEditText).show();
+    }
+
+    @OnClick(R.id.case_image_view)
+    public void uploadCaseOnClick() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,
+                getString(R.string.select_picture)), SELECT_PICTURE);
     }
 
     @OnClick(R.id.new_case_submit_button)
@@ -119,7 +147,6 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
         }
         newCasePresenter.submitNewCase();
     }
-
 
     @Override
     public void onDestroyView() {
@@ -143,10 +170,10 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        editText.setText(DateUtil.dateToString(year, month, day));
+                        editText.setText(DateUtil.dateToString(year, month + 1, day));
                     }
                 },
-                DateTime.now().getYear(), DateTime.now().getMonthOfYear(), DateTime.now().getDayOfMonth());
+                DateTime.now().getYear(), DateTime.now().getMonthOfYear() - 1, DateTime.now().getDayOfMonth());
     }
 
     @Override
@@ -159,7 +186,8 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
                 .setCaseType(caseTypeEditText.getText().toString())
                 .setCureDescription(cureDescriptionEditText.getText().toString())
                 .setHospital(hospitalEditText.getText().toString())
-                .setDoctor(doctorEditText.getText().toString());
+                .setDoctor(doctorEditText.getText().toString())
+                .setPhotoUriStr(photoUri.toString());
     }
 
     @Override

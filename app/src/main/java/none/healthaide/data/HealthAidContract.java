@@ -27,6 +27,7 @@ public final class HealthAidContract {
         public static final String COLUMN_NAME_DESCRIPTION = "description";
         public static final String COLUMN_NAME_TYPE = "type";
         public static final String COLUMN_NAME_CURE_DESCRIPTION = "cure_description";
+        public static final String COLUMN_NAME_PHOTO_URI = "photo_uri";
     }
 
     public static abstract class RevisitingEventEntry implements BaseColumns {

@@ -19,7 +19,8 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/new_case_left_and_right_padding"
             android:paddingRight="@dimen/new_case_left_and_right_padding"
-            android:paddingTop="@dimen/top_padding">
+            android:paddingTop="@dimen/top_padding"
+            android:paddingBottom="@dimen/space_8">
 
             <include
                 layout="@layout/case_detail_view" />

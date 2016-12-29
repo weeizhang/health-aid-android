@@ -18,4 +18,7 @@
     <string name="title">标题</string>
     <string name="type">类型</string>
     <string name="revisiting_date">复诊日期</string>
+    <string name="case_detail">病例详情</string>
+    <string name="case_photo">病例照片</string>
+    <string name="select_picture">选择照片</string>
 </resources>

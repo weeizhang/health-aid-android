@@ -1,5 +1,6 @@
 package none.healthaide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -33,5 +34,10 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.content, fragment)
                 .addToBackStack(tag)
                 .commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

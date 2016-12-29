@@ -19,6 +19,8 @@
     <string name="submit">Submit</string>
     <string name="recent_case">Recent Case</string>
     <string name="revisiting_date">Revisiting Date</string>
+    <string name="case_photo">Case photo</string>
 
     <string name="case_detail">Case Detail</string>
+    <string name="select_picture">Select Picture</string>
 </resources>

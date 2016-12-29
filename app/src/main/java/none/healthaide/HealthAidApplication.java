@@ -2,7 +2,9 @@ package none.healthaide;
 
 import android.app.Application;
 
-public class HealthAidApplication extends Application{
+import com.facebook.stetho.Stetho;
+
+public class HealthAidApplication extends Application {
 
     private HealthAidComponent component;
 
@@ -11,6 +13,7 @@ public class HealthAidApplication extends Application{
         super.onCreate();
         component = createComponent();
         component.inject(this);
+        Stetho.initializeWithDefaults(this);
     }
 
     public HealthAidComponent getComponent() {

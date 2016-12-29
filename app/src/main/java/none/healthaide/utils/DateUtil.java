@@ -2,13 +2,13 @@ package none.healthaide.utils;
 
 import android.text.format.DateFormat;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public class DateUtil {
     public static final String DATE_FORMAT = "yyyy-MM-dd";
 
     public static String dateToString(int year, int month, int day) {
         return DateFormat.format(DateUtil.DATE_FORMAT,
-                new LocalDateTime().withYear(year).withMonthOfYear(month).withDayOfMonth(day).toDate()).toString();
+                new DateTime(year, month, day, 0, 0).toDate()).toString();
     }
 }

@@ -8,7 +8,14 @@
         android:id="@+id/tool_bar"
         layout="@layout/toolbar" />
 
-    <include
-        layout="@layout/case_detail_view" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/new_case_left_and_right_padding"
+        android:layout_marginBottom="@dimen/space_8"
+        android:layout_marginTop="@dimen/top_padding">
+
+        <include layout="@layout/case_detail_view" />
+    </ScrollView>
 
 </LinearLayout>

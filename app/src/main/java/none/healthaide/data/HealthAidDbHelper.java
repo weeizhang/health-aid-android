@@ -28,7 +28,8 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
                     CaseEntry.COLUMN_NAME_DOCTOR + TEXT_TYPE + COMMA_SEP +
                     CaseEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
                     CaseEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE +
+                    CaseEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+                    CaseEntry.COLUMN_NAME_PHOTO_URI + TEXT_TYPE +
                     " )";
 
     private static final String SQL_DELETE_CASE =
