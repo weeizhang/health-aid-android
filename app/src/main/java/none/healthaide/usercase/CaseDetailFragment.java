@@ -1,5 +1,6 @@
 package none.healthaide.usercase;
 
+import android.Manifest;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.tbruyelle.rxpermissions.RxPermissions;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -23,12 +26,14 @@ import none.healthaide.R;
 import none.healthaide.data.CaseCursor;
 import none.healthaide.data.HealthAidContract;
 import none.healthaide.main.MainFragment;
+import rx.functions.Action1;
 
 public class CaseDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final String TAG = CaseDetailFragment.class.getSimpleName();
     private static final int LOADER_CASE_DETAIL = 0;
 
     private Unbinder unbinder;
+    private RxPermissions rxPermissions;
 
     @BindView(R.id.toolbar_actionbar)
     Toolbar toolbar;
@@ -64,6 +69,7 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
         super.onViewCreated(view, savedInstanceState);
         initActionBar();
 
+        rxPermissions = new RxPermissions(getActivity());
         getLoaderManager().initLoader(LOADER_CASE_DETAIL, getArguments(), this);
     }
 
@@ -96,7 +102,7 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
-            CaseCursor caseCursor = new CaseCursor(data);
+            final CaseCursor caseCursor = new CaseCursor(data);
             titleEditText.setText(caseCursor.getTitle());
             startDateEditText.setText(caseCursor.getStartDate());
             endDateEditText.setText(caseCursor.getEndDate());
@@ -105,7 +111,21 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
             cureDescriptionEditText.setText(caseCursor.getCureDescription());
             hospitalEditText.setText(caseCursor.getHospital());
             doctorEditText.setText(caseCursor.getDoctor());
-            photoImageView.setImageURI(Uri.parse(caseCursor.getPhotoUriStr()));
+
+            rxPermissions
+                    .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    .subscribe(new Action1<Boolean>() {
+                        @Override
+                        public void call(Boolean granted) {
+                            if (granted) {
+                                photoImageView.setImageURI(Uri.parse(caseCursor.getPhotoUriStr()));
+                            } else {
+                                //Todo: change image resource when permission deny
+                                photoImageView.setImageResource(R.drawable.plus);
+                            }
+                        }
+                    });
+
         }
     }
 
