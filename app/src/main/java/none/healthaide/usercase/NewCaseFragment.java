@@ -24,15 +24,12 @@ import android.widget.ImageView;
 
 import org.joda.time.DateTime;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
 import none.healthaide.R;
-import none.healthaide.data.HealthAidData;
 import none.healthaide.model.Case;
 import none.healthaide.utils.DateUtil;
 
@@ -67,15 +64,11 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
     private Uri photoUri;
     private NewCasePresenter newCasePresenter;
 
-    @Inject
-    HealthAidData healthAidData;
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         ((HealthAidApplication) getActivity().getApplication()).getComponent().inject(this);
-        CaseInteractor caseInteractor = new CaseInteractor(healthAidData);
-        newCasePresenter = new NewCasePresenter(caseInteractor, this);
+        newCasePresenter = new NewCasePresenter(getContext().getContentResolver(), this);
     }
 
     @Nullable
@@ -187,11 +180,16 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
                 .setCureDescription(cureDescriptionEditText.getText().toString())
                 .setHospital(hospitalEditText.getText().toString())
                 .setDoctor(doctorEditText.getText().toString())
-                .setPhotoUriStr(photoUri.toString());
+                .setPhotoUriStr(photoUri == null ? null : photoUri.toString());
     }
 
     @Override
     public void loadSuccess(long id) {
         getActivity().getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void loadFailed() {
+
     }
 }

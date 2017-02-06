@@ -56,8 +56,8 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_CASE);
         db.execSQL(SQL_CREATE_REVISITING_EVNET);
-//        db.execSQL("INSERT INTO user_case VALUES (0,\"title\",\"20160920\",\"20160930\",\"hospital\",\"doctor\",\"description\",\"type\",\"cure description\");");
-//        db.execSQL("INSERT INTO revisiting_event VALUES (0,0,\"20161030\");");
+//        db.execSQL("INSERT INTO user_case VALUES (0,\"title\",\"20160920\",\"20160930\",\"hospital\",\"doctor\",\"description\",\"type\",\"cure description\",\"content://media/external/images/media/638\");");
+//        db.execSQL("INSERT INTO revisiting_event VALUES (0,0,\"20171030\");");
     }
 
     @Override

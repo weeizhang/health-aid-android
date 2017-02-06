@@ -23,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
 import none.healthaide.R;
@@ -76,6 +77,11 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initActionBar();
+    }
+
+    @OnClick(R.id.add_revisiting_event_button)
+    public void revisitingButtonOnClick() {
+
     }
 
     private void initActionBar() {

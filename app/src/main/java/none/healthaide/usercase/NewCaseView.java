@@ -6,4 +6,6 @@ public interface NewCaseView {
     Case getCase();
 
     void loadSuccess(long id);
+
+    void loadFailed();
 }

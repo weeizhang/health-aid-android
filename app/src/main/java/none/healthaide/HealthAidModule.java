@@ -6,7 +6,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import none.healthaide.data.HealthAidData;
 
 @Module
 public class HealthAidModule {
@@ -20,11 +19,5 @@ public class HealthAidModule {
     @Singleton
     public Context providesContext() {
         return context;
-    }
-
-    @Provides
-    @Singleton
-    public HealthAidData providesHealthAidData(Context context) {
-        return new HealthAidData(context);
     }
 }

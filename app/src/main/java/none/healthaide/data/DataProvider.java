@@ -1,9 +1,12 @@
 package none.healthaide.data;
 
 import android.content.ContentProvider;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
@@ -18,6 +21,7 @@ public class DataProvider extends ContentProvider {
     private static final UriMatcher uriMatcher;
 
     private HealthAidDbHelper healthAidDbHelper;
+    private ContentResolver resolver;
 
     static {
         uriMatcher = new UriMatcher(0);
@@ -35,6 +39,7 @@ public class DataProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         healthAidDbHelper = new HealthAidDbHelper(getContext());
+        resolver = getContext().getContentResolver();
         return true;
     }
 
@@ -56,8 +61,15 @@ public class DataProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Uri insert(Uri uri, ContentValues contentValues) {
-        return null;
+    public Uri insert(Uri uri, ContentValues values) {
+        String table = uri.getLastPathSegment();
+        long rowId = healthAidDbHelper.getWritableDatabase().insert(table, null, values);
+        if (rowId < 0) {
+            throw new SQLiteException("Unable insert " + values + "for" + uri);
+        }
+        Uri newUri = ContentUris.withAppendedId(uri, rowId);
+        resolver.notifyChange(newUri, null);
+        return newUri;
     }
 
     @Override
