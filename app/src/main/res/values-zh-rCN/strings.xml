@@ -30,4 +30,7 @@
     <string name="gender_female">女</string>
     <string name="cancel">取消</string>
     <string name="ok">确定</string>
+    <string name="age_error_message">设置失败，请输入正确的年龄格式！如，18</string>
+    <string name="height_error_message">设置失败，请输入正确的身高格式！如，160</string>
+    <string name="weight_error_message">设置失败，请输入正确的体重格式！如，45</string>
 </resources>

@@ -32,4 +32,7 @@
     <string name="gender_female">Female</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="age_error_message">Please input the right age format!</string>
+    <string name="height_error_message">Please input the right height format!</string>
+    <string name="weight_error_message">Please input the right weight format!</string>
 </resources>

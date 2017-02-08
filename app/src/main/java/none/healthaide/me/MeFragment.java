@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -88,9 +89,16 @@ public class MeFragment extends Fragment {
         DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String age = editText.getText().toString();
-                PreferencesUtil.setUserAge(Integer.parseInt(age));
-                ageTextView.setText(age);
+                int age = 0;
+                try {
+                    age = Integer.parseInt(editText.getText().toString());
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getActivity(), R.string.age_error_message, Toast.LENGTH_LONG).show();
+                }
+                if (age > 0) {
+                    PreferencesUtil.setUserAge(age);
+                    ageTextView.setText(age);
+                }
             }
         };
         showInputDialog(getString(R.string.age), editText, onClickListener);
@@ -102,9 +110,16 @@ public class MeFragment extends Fragment {
         DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String height = editText.getText().toString();
-                PreferencesUtil.setUserHeight(Integer.parseInt(height));
-                heightTextView.setText(height);
+                int height = 0;
+                try {
+                    height = Integer.parseInt(editText.getText().toString());
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getActivity(), R.string.height_error_message, Toast.LENGTH_LONG).show();
+                }
+                if (height > 0) {
+                    PreferencesUtil.setUserHeight(height);
+                    heightTextView.setText(height);
+                }
             }
         };
         showInputDialog(getString(R.string.height), editText, onClickListener);
@@ -116,9 +131,16 @@ public class MeFragment extends Fragment {
         DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String weight = editText.getText().toString();
-                PreferencesUtil.setUserWeight(Integer.parseInt(weight));
-                weightTextView.setText(weight);
+                int weight = 0;
+                try {
+                    weight = Integer.parseInt(editText.getText().toString());
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getActivity(), R.string.weight_error_message, Toast.LENGTH_LONG).show();
+                }
+                if (weight > 0) {
+                    PreferencesUtil.setUserWeight(weight);
+                    weightTextView.setText(weight);
+                }
             }
         };
         showInputDialog(getString(R.string.weight), editText, onClickListener);
