@@ -3,15 +3,11 @@
     <array name="feature_icon">
         <item>@drawable/ic_case_black_48dp</item>
         <item>@drawable/ic_event_black_48dp</item>
-        <item>@drawable/ic_change_history_black_48dp</item>
-        <item>@drawable/ic_import_export_black_48dp</item>
         <item>@drawable/ic_account_circle_black_48dp</item>
     </array>
     <array name="feature_label">
         <item>@string/new_case</item>
         <item>@string/revisiting_event</item>
-        <item>@string/allergy_history</item>
-        <item>@string/export_case</item>
         <item>@string/me</item>
     </array>
 </resources>

@@ -45,7 +45,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     private static final int CASE_LIST_LOADER = 0;
     public static final int NEW_CASE_INDEX = 0;
     public static final int REVISITING_INDEX = 1;
-    public static final int ME_INDEX = 4;
+    public static final int ME_INDEX = 2;
     public static final String CASE_ID = "case_id";
 
     @BindView(R.id.toolbar_actionbar)
