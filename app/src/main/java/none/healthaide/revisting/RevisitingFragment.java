@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
+import none.healthaide.MainActivity;
 import none.healthaide.R;
 import none.healthaide.data.HealthAidContract;
 import none.healthaide.data.RevisitingCursor;
@@ -81,7 +82,7 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
 
     @OnClick(R.id.add_revisiting_event_button)
     public void revisitingButtonOnClick() {
-
+        ((MainActivity) RevisitingFragment.this.getActivity()).replaceFragment(new SelectRevisitingFragment(), SelectRevisitingFragment.TAG);
     }
 
     private void initActionBar() {

@@ -35,4 +35,8 @@
     <string name="age_error_message">Please input the right age format!</string>
     <string name="height_error_message">Please input the right height format!</string>
     <string name="weight_error_message">Please input the right weight format!</string>
+    
+    <string name="select_revisiting">Select revisiting case</string>
+    <string name="select_revisiting_date">Select revisiting date</string>
+    <string name="add_revisiting_event_success">Revisiting date add success!</string>
 </resources>
