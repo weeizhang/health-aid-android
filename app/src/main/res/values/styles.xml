@@ -27,4 +27,9 @@
         <item name="android:fontFamily">@string/font_fontFamily_medium</item>
     </style>
 
+    <style name="MeTitleText">
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>

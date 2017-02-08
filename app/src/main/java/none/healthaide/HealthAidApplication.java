@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.facebook.stetho.Stetho;
 
+import none.healthaide.utils.PreferencesUtil;
+
 public class HealthAidApplication extends Application {
 
     private HealthAidComponent component;
@@ -14,6 +16,7 @@ public class HealthAidApplication extends Application {
         component = createComponent();
         component.inject(this);
         Stetho.initializeWithDefaults(this);
+        PreferencesUtil.init(this);
     }
 
     public HealthAidComponent getComponent() {

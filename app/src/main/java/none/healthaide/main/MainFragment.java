@@ -33,6 +33,7 @@ import none.healthaide.MainActivity;
 import none.healthaide.R;
 import none.healthaide.data.HealthAidContract;
 import none.healthaide.data.CaseCursor;
+import none.healthaide.me.MeFragment;
 import none.healthaide.model.Case;
 import none.healthaide.revisting.RevisitingFragment;
 import none.healthaide.usercase.CaseDetailFragment;
@@ -44,6 +45,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     private static final int CASE_LIST_LOADER = 0;
     public static final int NEW_CASE_INDEX = 0;
     public static final int REVISITING_INDEX = 1;
+    public static final int ME_INDEX = 4;
     public static final String CASE_ID = "case_id";
 
     @BindView(R.id.toolbar_actionbar)
@@ -88,6 +90,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
                         break;
                     case REVISITING_INDEX:
                         ((MainActivity) MainFragment.this.getActivity()).replaceFragment(new RevisitingFragment(), RevisitingFragment.TAG);
+                        break;
+                    case ME_INDEX:
+                        ((MainActivity) MainFragment.this.getActivity()).replaceFragment(new MeFragment(), MeFragment.TAG);
                         break;
                     default:
                         Toast.makeText(MainFragment.this.getContext(), "This is " + position + " feature", Toast.LENGTH_SHORT).show();

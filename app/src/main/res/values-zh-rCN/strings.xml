@@ -21,4 +21,13 @@
     <string name="case_detail">病例详情</string>
     <string name="case_photo">病例照片</string>
     <string name="select_picture">选择照片</string>
+    <string name="height">身高</string>
+    <string name="weight">体重</string>
+    <string name="age">年龄</string>
+    <string name="gender">性别</string>
+    <string name="user_info">个人信息</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
 </resources>

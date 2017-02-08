@@ -8,4 +8,5 @@
     <color name="colorDividerColor">#FFEEEEEE</color>
     <color name="colorBlack">#FF333F48</color>
     <color name="colorBackgroundGrey">#66EAEBEC</color>
+    <color name="dividerColor">#eeeeee</color>
 </resources>
