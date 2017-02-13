@@ -1,5 +1,7 @@
 package none.healthaide.main;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,8 +34,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import none.healthaide.MainActivity;
 import none.healthaide.R;
-import none.healthaide.data.HealthAidContract;
 import none.healthaide.data.CaseCursor;
+import none.healthaide.data.HealthAidContract;
 import none.healthaide.me.MeFragment;
 import none.healthaide.model.Case;
 import none.healthaide.revisting.RevisitingFragment;
@@ -43,10 +46,12 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     public static final String TAG = MainFragment.class.getSimpleName();
 
     private static final int CASE_LIST_LOADER = 0;
+    private static final int SUGGESTION_LIST_LOADER = 1;
     public static final int NEW_CASE_INDEX = 0;
     public static final int REVISITING_INDEX = 1;
     public static final int ME_INDEX = 2;
     public static final String CASE_ID = "case_id";
+    public static final String QUERY = "query";
 
     @BindView(R.id.toolbar_actionbar)
     Toolbar toolbar;
@@ -54,6 +59,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     GridView featureGridView;
     @BindView(R.id.case_list_view)
     RecyclerView caseRecycleView;
+
+    private SearchView searchView;
+    private SuggestionAdapter suggestionAdapter;
 
     private Unbinder unbinder;
     private TypedArray featureIcons;
@@ -72,6 +80,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         createRecentCaseView();
 
         getLoaderManager().initLoader(CASE_LIST_LOADER, null, this);
+        getLoaderManager().initLoader(SUGGESTION_LIST_LOADER, null, this);
 
         return view;
     }
@@ -118,6 +127,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.main_menu, menu);
+        initSuggestionView(menu);
     }
 
     @Override
@@ -126,9 +136,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         switch (itemId) {
             case R.id.action_new_case:
                 ((MainActivity) getActivity()).replaceFragment(new NewCaseFragment(), NewCaseFragment.TAG);
-                return true;
-            case R.id.action_filter_case:
-                ((MainActivity) getActivity()).replaceFragment(new SearchFragment(), NewCaseFragment.TAG);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -146,6 +153,8 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
             case CASE_LIST_LOADER:
                 return new CursorLoader(
                         getActivity(), HealthAidContract.CASE_TABLE_CONTENT_URI, null, null, null, null);
+            case SUGGESTION_LIST_LOADER:
+                return new CursorLoader(getActivity(), HealthAidContract.CASE_TABLE_CONTENT_URI, null, HealthAidContract.CaseEntry.COLUMN_NAME_TITLE + " like '%" + (args == null ? "" : args.getString(QUERY)) + "%'", null, null);
             default:
                 return null;
         }
@@ -153,31 +162,82 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data != null && data.moveToFirst()) {
-            caseList.clear();
-            do {
-                CaseCursor caseCursor = new CaseCursor(data);
-                caseList.add(new Case()
-                        .setId(caseCursor.getId())
-                        .setTitle(caseCursor.getTitle())
-                        .setStartDate(caseCursor.getStartDate())
-                        .setCaseDescribe(caseCursor.getCaseDescribe())
-                        .setHospital(caseCursor.getHospital())
-                        .setDoctor(caseCursor.getDoctor()));
-            } while (data.moveToNext());
-
-            caseListViewAdapter.setCaseList(caseList);
-            caseListViewAdapter.notifyDataSetChanged();
+        switch (loader.getId()) {
+            case NEW_CASE_INDEX:
+                if (data != null && data.moveToFirst()) {
+                    caseList.clear();
+                    do {
+                        CaseCursor caseCursor = new CaseCursor(data);
+                        caseList.add(new Case()
+                                .setId(caseCursor.getId())
+                                .setTitle(caseCursor.getTitle())
+                                .setStartDate(caseCursor.getStartDate())
+                                .setCaseDescribe(caseCursor.getCaseDescribe())
+                                .setHospital(caseCursor.getHospital())
+                                .setDoctor(caseCursor.getDoctor()));
+                    } while (data.moveToNext());
+                    caseListViewAdapter.setCaseList(caseList);
+                    caseListViewAdapter.notifyDataSetChanged();
+                }
+                break;
+            case SUGGESTION_LIST_LOADER:
+                if (suggestionAdapter != null) {
+                    suggestionAdapter.swapCursor(data);
+                }
+                break;
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
     }
 
     @Override
     public void onCaseSelected(Integer caseId) {
+        showCaseDetailFragment(caseId);
+    }
+
+    private void initSuggestionView(Menu menu) {
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_filter_case).getActionView();
+        searchView.setQueryHint(getString(R.string.search_case));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        suggestionAdapter = new SuggestionAdapter(getActivity(), null);
+        searchView.setSuggestionsAdapter(suggestionAdapter);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.length() > 1) {
+                    Bundle data = new Bundle();
+                    data.putString(QUERY, newText);
+                    getLoaderManager().restartLoader(SUGGESTION_LIST_LOADER, data, MainFragment.this);
+                }
+                return false;
+            }
+        });
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int position) {
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int position) {
+                Cursor cursor = suggestionAdapter.getCursor();
+                if(cursor != null && cursor.moveToPosition(position)) {
+                    showCaseDetailFragment(cursor.getInt(cursor.getColumnIndex(HealthAidContract.CaseEntry._ID)));
+                }
+                return false;
+            }
+        });
+    }
+
+    private void showCaseDetailFragment(int caseId) {
         CaseDetailFragment fragment = new CaseDetailFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(CASE_ID, caseId);

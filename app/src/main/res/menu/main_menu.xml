@@ -9,7 +9,8 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_filter_case"
-        android:icon="@drawable/ic_filter_list_white_24dp"
         android:title="@string/filter_case"
-        app:showAsAction="always" />
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
 </menu>
