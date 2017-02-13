@@ -19,11 +19,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import none.healthaide.MainActivity;
 import none.healthaide.R;
+import none.healthaide.common.WebViewFragment;
 import none.healthaide.utils.PreferencesUtil;
 
 public class MeFragment extends Fragment {
     public static final String TAG = MeFragment.class.getSimpleName();
+    private static final String suggest_jinshuju_url = "https://jinshuju.net/f/5woEEh";
 
     private Unbinder unbinder;
     @BindView(R.id.toolbar_actionbar)
@@ -144,6 +147,14 @@ public class MeFragment extends Fragment {
             }
         };
         showInputDialog(getString(R.string.weight), editText, onClickListener);
+    }
+
+    @OnClick(R.id.suggest_view)
+    public void onSuggestViewClick() {
+        ((MainActivity) MeFragment.this.getActivity()).replaceFragment(
+                WebViewFragment.createInstance(getString(R.string.suggest), suggest_jinshuju_url),
+                WebViewFragment.TAG);
+
     }
 
     private void initActionBar() {

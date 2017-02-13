@@ -124,4 +124,24 @@
         android:layout_height="@dimen/divider_height"
         android:background="@color/dividerColor" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_16"
+        android:text="@string/about_us"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/large_text_size" />
+
+    <TextView
+        android:id="@+id/suggest_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_16"
+        android:text="@string/suggest"
+        android:textSize="@dimen/medium_text_size" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/dividerColor" />
 </LinearLayout>

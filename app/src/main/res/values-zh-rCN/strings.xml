@@ -21,20 +21,29 @@
     <string name="case_detail">病例详情</string>
     <string name="case_photo">病例照片</string>
     <string name="select_picture">选择照片</string>
+
+    <string name="search_case">搜索病例</string>
+
+    <!-- Revisiting -->
+    <string name="select_revisiting">选择要添加复诊提醒的病例</string>
+    <string name="select_revisiting_date">选择复诊日期</string>
+    <string name="add_revisiting_event_success">复诊提醒添加成功！</string>
+
+    <!-- Me -->
+    <string name="user_info">个人信息</string>
     <string name="height">身高</string>
     <string name="weight">体重</string>
     <string name="age">年龄</string>
     <string name="gender">性别</string>
-    <string name="user_info">个人信息</string>
     <string name="gender_male">男</string>
     <string name="gender_female">女</string>
-    <string name="cancel">取消</string>
-    <string name="ok">确定</string>
     <string name="age_error_message">设置失败，请输入正确的年龄格式！如，18</string>
     <string name="height_error_message">设置失败，请输入正确的身高格式！如，160</string>
     <string name="weight_error_message">设置失败，请输入正确的体重格式！如，45</string>
-    <string name="select_revisiting">选择要添加复诊提醒的病例</string>
-    <string name="select_revisiting_date">选择复诊日期</string>
-    <string name="add_revisiting_event_success">复诊提醒添加成功！</string>
-    <string name="search_case">搜索病例</string>
+    <string name="about_us">关于我们</string>
+    <string name="suggest"><![CDATA[意见&建议]]></string>
+
+    <!-- Common -->
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
 </resources>

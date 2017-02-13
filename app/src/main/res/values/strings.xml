@@ -22,23 +22,29 @@
     <string name="recent_case">Recent Case</string>
     <string name="revisiting_date">Revisiting Date</string>
     <string name="case_photo">Case photo</string>
-
     <string name="case_detail">Case Detail</string>
     <string name="select_picture">Select Picture</string>
+
+    <!-- Revisiting -->
+    <string name="select_revisiting">Select revisiting case</string>
+    <string name="select_revisiting_date">Select revisiting date</string>
+    <string name="add_revisiting_event_success">Revisiting date add success!</string>
+
+    <!-- Me -->
+    <string name="user_info">User info</string>
     <string name="height">Height</string>
     <string name="weight">Weight</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
-    <string name="user_info">User Info</string>
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
     <string name="age_error_message">Please input the right age format!</string>
     <string name="height_error_message">Please input the right height format!</string>
     <string name="weight_error_message">Please input the right weight format!</string>
-    
-    <string name="select_revisiting">Select revisiting case</string>
-    <string name="select_revisiting_date">Select revisiting date</string>
-    <string name="add_revisiting_event_success">Revisiting date add success!</string>
+    <string name="about_us">About us</string>
+    <string name="suggest">Give us feedback</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>
