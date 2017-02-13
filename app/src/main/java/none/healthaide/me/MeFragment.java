@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import none.healthaide.BuildConfig;
 import none.healthaide.MainActivity;
 import none.healthaide.R;
 import none.healthaide.common.WebViewFragment;
@@ -39,6 +40,8 @@ public class MeFragment extends Fragment {
     TextView heightTextView;
     @BindView(R.id.weight_text_view)
     TextView weightTextView;
+    @BindView(R.id.me_version_text_view)
+    TextView versionTextView;
 
     @Nullable
     @Override
@@ -66,6 +69,7 @@ public class MeFragment extends Fragment {
         ageTextView.setText(String.format("%1$d", PreferencesUtil.getUserAge()));
         heightTextView.setText(String.format("%1$d cm", PreferencesUtil.getUserHeight()));
         weightTextView.setText(String.format("%1$d kg", PreferencesUtil.getUserWeight()));
+        versionTextView.setText(BuildConfig.VERSION_NAME);
     }
 
     @OnClick(R.id.gender_view)

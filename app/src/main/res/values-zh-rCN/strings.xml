@@ -41,6 +41,7 @@
     <string name="height_error_message">设置失败，请输入正确的身高格式！如，160</string>
     <string name="weight_error_message">设置失败，请输入正确的体重格式！如，45</string>
     <string name="about_us">关于我们</string>
+    <string name="version">版本</string>
     <string name="suggest"><![CDATA[意见&建议]]></string>
 
     <!-- Common -->

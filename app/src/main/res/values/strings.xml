@@ -41,6 +41,7 @@
     <string name="age_error_message">Please input the right age format!</string>
     <string name="height_error_message">Please input the right height format!</string>
     <string name="weight_error_message">Please input the right weight format!</string>
+    <string name="version">Version</string>
     <string name="about_us">About us</string>
     <string name="suggest">Give us feedback</string>
 
