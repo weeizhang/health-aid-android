@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">Health Aide</string>
-    <string name="new_case">New Case</string>
-    <string name="filter_case">Filter Case</string>
+    <string name="new_medical_records">New Medical Records</string>
+    <string name="filter_medical_records">Filter Medical Records</string>
     <string name="revisiting_event">Revisiting Event</string>
     <string name="allergy_history">Allergy History</string>
-    <string name="export_case">Export Case</string>
+    <string name="export_medical_records">Export Case</string>
     <string name="me">Me</string>
 
-    <string name="search_case">Search Case</string>
-    <string name="empty_case_prompt_message">Please add your case!</string>
+    <string name="search_medical_records">Search Medical Records</string>
+    <string name="empty_medical_records_prompt_message">Please add your medical records!</string>
     <string name="empty_revisiting_prompt_message">Please add your revisiting event!</string>
-    <string name="empty_select_revisiting_prompt_message">Please add your case first!</string>
+    <string name="empty_select_revisiting_prompt_message">Please add your medical records first!</string>
 
-    <!--New Case-->
+    <!--New MedicalRecords-->
     <string name="symptom">Symptom</string>
     <string name="type">Type</string>
     <string name="therapeutic_method">Therapeutic method</string>
@@ -22,14 +22,14 @@
     <string name="start_date">Start date</string>
     <string name="end_date">End date</string>firs
     <string name="submit">Submit</string>
-    <string name="recent_case">Recent Case</string>
+    <string name="recent_medical_records">Recent medical records</string>
     <string name="revisiting_date">Revisiting Date</string>
-    <string name="case_photo">Case photo</string>
-    <string name="case_detail">Case Detail</string>
+    <string name="medical_records_photo">Medical records photo</string>
+    <string name="medical_records_detail">Medical records Detail</string>
     <string name="select_picture">Select Picture</string>
 
     <!-- Revisiting -->
-    <string name="select_revisiting">Select revisiting case</string>
+    <string name="select_revisiting">Select revisiting medical records</string>
     <string name="select_revisiting_date">Select revisiting date</string>
     <string name="add_revisiting_event_success">Revisiting date add success!</string>
 

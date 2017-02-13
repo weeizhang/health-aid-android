@@ -1,4 +1,4 @@
-package none.healthaide.usercase;
+package none.healthaide.usermedicalrecords;
 
 import android.Manifest;
 import android.database.Cursor;
@@ -23,14 +23,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import none.healthaide.R;
-import none.healthaide.data.CaseCursor;
+import none.healthaide.data.MedicalRecordsCursor;
 import none.healthaide.data.HealthAidContract;
 import none.healthaide.main.MainFragment;
 import rx.functions.Action1;
 
-public class CaseDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-    public static final String TAG = CaseDetailFragment.class.getSimpleName();
-    private static final int LOADER_CASE_DETAIL = 0;
+public class MedicalRecordsDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+    public static final String TAG = MedicalRecordsDetailFragment.class.getSimpleName();
+    private static final int LOADER_MEDICAL_RECORDS_DETAIL = 0;
 
     private Unbinder unbinder;
     private RxPermissions rxPermissions;
@@ -43,23 +43,23 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
     EditText startDateEditText;
     @BindView(R.id.input_end_date)
     EditText endDateEditText;
-    @BindView(R.id.input_case_describe)
-    EditText caseDescribeEditText;
-    @BindView(R.id.input_case_type)
-    EditText caseTypeEditText;
+    @BindView(R.id.input_medical_records_describe)
+    EditText medicalRecordsDescribeEditText;
+    @BindView(R.id.input_medical_records_type)
+    EditText medicalRecordsTypeEditText;
     @BindView(R.id.input_cure_description)
     EditText cureDescriptionEditText;
     @BindView(R.id.input_hospital)
     EditText hospitalEditText;
     @BindView(R.id.input_doctor)
     EditText doctorEditText;
-    @BindView(R.id.case_image_view)
+    @BindView(R.id.medical_records_image_view)
     ImageView photoImageView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_case_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_medical_records_detail, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -70,7 +70,7 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
         initActionBar();
 
         rxPermissions = new RxPermissions(getActivity());
-        getLoaderManager().initLoader(LOADER_CASE_DETAIL, getArguments(), this);
+        getLoaderManager().initLoader(LOADER_MEDICAL_RECORDS_DETAIL, getArguments(), this);
     }
 
     @Override
@@ -81,18 +81,18 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
 
     private void initActionBar() {
         setHasOptionsMenu(true);
-        toolbar.setTitle(getResources().getString(R.string.case_detail));
+        toolbar.setTitle(getResources().getString(R.string.medical_records_detail));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
-            case LOADER_CASE_DETAIL:
+            case LOADER_MEDICAL_RECORDS_DETAIL:
                 CursorLoader cursorLoader = new CursorLoader(getContext());
-                int caseId = args.getInt(MainFragment.CASE_ID);
-                cursorLoader.setUri(HealthAidContract.CASE_TABLE_CONTENT_URI);
-                cursorLoader.setSelection(HealthAidContract.CaseEntry._ID + " = " + caseId);
+                int medicalRecordsId = args.getInt(MainFragment.MEDICAL_RECORDS_ID);
+                cursorLoader.setUri(HealthAidContract.MEDICAL_RECORDS_TABLE_CONTENT_URI);
+                cursorLoader.setSelection(HealthAidContract.MedicalRecordsEntry._ID + " = " + medicalRecordsId);
                 return cursorLoader;
             default:
                 return null;
@@ -102,15 +102,15 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
-            final CaseCursor caseCursor = new CaseCursor(data);
-            titleEditText.setText(caseCursor.getTitle());
-            startDateEditText.setText(caseCursor.getStartDate());
-            endDateEditText.setText(caseCursor.getEndDate());
-            caseDescribeEditText.setText(caseCursor.getCaseDescribe());
-            caseTypeEditText.setText(caseCursor.getCaseType());
-            cureDescriptionEditText.setText(caseCursor.getCureDescription());
-            hospitalEditText.setText(caseCursor.getHospital());
-            doctorEditText.setText(caseCursor.getDoctor());
+            final MedicalRecordsCursor medicalRecordsCursor = new MedicalRecordsCursor(data);
+            titleEditText.setText(medicalRecordsCursor.getTitle());
+            startDateEditText.setText(medicalRecordsCursor.getStartDate());
+            endDateEditText.setText(medicalRecordsCursor.getEndDate());
+            medicalRecordsDescribeEditText.setText(medicalRecordsCursor.getMedicalRecordsDescribe());
+            medicalRecordsTypeEditText.setText(medicalRecordsCursor.getMedicalRecordsType());
+            cureDescriptionEditText.setText(medicalRecordsCursor.getCureDescription());
+            hospitalEditText.setText(medicalRecordsCursor.getHospital());
+            doctorEditText.setText(medicalRecordsCursor.getDoctor());
 
             rxPermissions
                     .request(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -118,7 +118,7 @@ public class CaseDetailFragment extends Fragment implements LoaderManager.Loader
                         @Override
                         public void call(Boolean granted) {
                             if (granted) {
-                                photoImageView.setImageURI(Uri.parse(caseCursor.getPhotoUriStr()));
+                                photoImageView.setImageURI(Uri.parse(medicalRecordsCursor.getPhotoUriStr()));
                             } else {
                                 //Todo: change image resource when permission deny
                                 photoImageView.setImageResource(R.drawable.plus);

@@ -15,7 +15,7 @@
         android:layout_marginBottom="@dimen/space_8"
         android:layout_marginTop="@dimen/top_padding">
 
-        <include layout="@layout/case_detail_view" />
+        <include layout="@layout/medical_records_detail_view" />
     </ScrollView>
 
 </LinearLayout>

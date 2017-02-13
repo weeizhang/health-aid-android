@@ -1,4 +1,4 @@
-package none.healthaide.usercase;
+package none.healthaide.usermedicalrecords;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -30,11 +30,11 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import none.healthaide.HealthAidApplication;
 import none.healthaide.R;
-import none.healthaide.model.Case;
+import none.healthaide.model.MedicalRecords;
 import none.healthaide.utils.DateUtil;
 
-public class NewCaseFragment extends Fragment implements NewCaseView {
-    public static final String TAG = NewCaseFragment.class.getSimpleName();
+public class NewMedicalRecordsFragment extends Fragment implements NewMedicalRecordsView {
+    public static final String TAG = NewMedicalRecordsFragment.class.getSimpleName();
 
     private static final int SELECT_PICTURE = 1;
 
@@ -48,9 +48,9 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
     EditText startDateEditText;
     @BindView(R.id.input_end_date)
     EditText endDateEditText;
-    @BindView(R.id.input_case_describe)
+    @BindView(R.id.input_medical_records_describe)
     EditText caseDescribeEditText;
-    @BindView(R.id.input_case_type)
+    @BindView(R.id.input_medical_records_type)
     EditText caseTypeEditText;
     @BindView(R.id.input_cure_description)
     EditText cureDescriptionEditText;
@@ -58,17 +58,17 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
     EditText hospitalEditText;
     @BindView(R.id.input_doctor)
     EditText doctorEditText;
-    @BindView(R.id.case_image_view)
+    @BindView(R.id.medical_records_image_view)
     ImageView uploadCaseImage;
 
     private Uri photoUri;
-    private NewCasePresenter newCasePresenter;
+    private NewMedicalRecordsPresenter newMedicalRecordsPresenter;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         ((HealthAidApplication) getActivity().getApplication()).getComponent().inject(this);
-        newCasePresenter = new NewCasePresenter(getContext().getContentResolver(), this);
+        newMedicalRecordsPresenter = new NewMedicalRecordsPresenter(getContext().getContentResolver(), this);
     }
 
     @Nullable
@@ -122,8 +122,8 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
         createDatePickerDialog(endDateEditText).show();
     }
 
-    @OnClick(R.id.case_image_view)
-    public void uploadCaseOnClick() {
+    @OnClick(R.id.medical_records_image_view)
+    public void uploadMedicalRecordsOnClick() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -131,14 +131,14 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
                 getString(R.string.select_picture)), SELECT_PICTURE);
     }
 
-    @OnClick(R.id.new_case_submit_button)
-    public void newCaseSubmitOnClick() {
+    @OnClick(R.id.new_medical_records_submit_button)
+    public void newMedicalRecordsSubmitOnClick() {
         View view = getActivity().getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        newCasePresenter.submitNewCase();
+        newMedicalRecordsPresenter.submitNewCase();
     }
 
     @Override
@@ -149,7 +149,7 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
 
     private void initActionBar() {
         setHasOptionsMenu(true);
-        toolbar.setTitle(getResources().getString(R.string.new_case));
+        toolbar.setTitle(getResources().getString(R.string.new_medical_records));
 //        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -170,13 +170,13 @@ public class NewCaseFragment extends Fragment implements NewCaseView {
     }
 
     @Override
-    public Case getCase() {
-        return new Case()
+    public MedicalRecords getMedicalRecords() {
+        return new MedicalRecords()
                 .setTitle(titleEditText.getText().toString())
                 .setStartDate(startDateEditText.getText().toString())
                 .setEndDate(endDateEditText.getText().toString())
-                .setCaseDescribe(caseDescribeEditText.getText().toString())
-                .setCaseType(caseTypeEditText.getText().toString())
+                .setMedicalRecordsDescribe(caseDescribeEditText.getText().toString())
+                .setMedicalRecordsType(caseTypeEditText.getText().toString())
                 .setCureDescription(cureDescriptionEditText.getText().toString())
                 .setHospital(hospitalEditText.getText().toString())
                 .setDoctor(doctorEditText.getText().toString())

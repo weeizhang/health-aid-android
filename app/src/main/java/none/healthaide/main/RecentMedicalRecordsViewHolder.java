@@ -7,9 +7,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import none.healthaide.R;
-import none.healthaide.model.Case;
+import none.healthaide.model.MedicalRecords;
 
-public class RecentCaseViewHolder extends RecyclerView.ViewHolder {
+public class RecentMedicalRecordsViewHolder extends RecyclerView.ViewHolder {
 
     private final Callback callback;
 
@@ -24,28 +24,28 @@ public class RecentCaseViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.start_date_text_view)
     TextView startDateView;
 
-    public RecentCaseViewHolder(View view, Callback callback) {
+    public RecentMedicalRecordsViewHolder(View view, Callback callback) {
         super(view);
         this.callback = callback;
         ButterKnife.bind(this, view);
     }
 
-    public void populate(final Case caseItem) {
-        titleView.setText(caseItem.getTitle());
-        describeView.setText(caseItem.getCaseDescribe());
-        hospitalView.setText(caseItem.getHospital());
-        doctorView.setText(caseItem.getDoctor());
-        startDateView.setText(caseItem.getStartDate());
+    public void populate(final MedicalRecords medicalRecordsItem) {
+        titleView.setText(medicalRecordsItem.getTitle());
+        describeView.setText(medicalRecordsItem.getMedicalRecordsDescribe());
+        hospitalView.setText(medicalRecordsItem.getHospital());
+        doctorView.setText(medicalRecordsItem.getDoctor());
+        startDateView.setText(medicalRecordsItem.getStartDate());
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callback.onCaseSelected(caseItem.getId());
+                callback.onMedicalRecordsSelected(medicalRecordsItem.getId());
             }
         });
     }
 
     public interface Callback {
-        void onCaseSelected(Integer caseId);
+        void onMedicalRecordsSelected(Integer caseId);
     }
 }

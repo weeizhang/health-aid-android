@@ -7,7 +7,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import none.healthaide.R;
-import none.healthaide.model.Case;
+import none.healthaide.model.MedicalRecords;
 
 public class RevisitingViewHolder extends RecyclerView.ViewHolder {
 
@@ -29,12 +29,12 @@ public class RevisitingViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, view);
     }
 
-    public void populate(Case caseItem) {
-        revisitingDateView.setText(caseItem.getRevisitingDate());
-        titleView.setText(caseItem.getTitle());
-        describeView.setText(caseItem.getCaseDescribe());
-        hospitalView.setText(caseItem.getHospital());
-        doctorView.setText(caseItem.getDoctor());
-        startDateView.setText(caseItem.getStartDate());
+    public void populate(MedicalRecords medicalRecordsItem) {
+        revisitingDateView.setText(medicalRecordsItem.getRevisitingDate());
+        titleView.setText(medicalRecordsItem.getTitle());
+        describeView.setText(medicalRecordsItem.getMedicalRecordsDescribe());
+        hospitalView.setText(medicalRecordsItem.getHospital());
+        doctorView.setText(medicalRecordsItem.getDoctor());
+        startDateView.setText(medicalRecordsItem.getStartDate());
     }
 }

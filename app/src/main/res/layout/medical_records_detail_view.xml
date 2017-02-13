@@ -51,7 +51,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/input_case_describe"
+            android:id="@+id/input_medical_records_describe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/symptom"
@@ -65,7 +65,7 @@
         android:paddingTop="8dp">
 
         <EditText
-            android:id="@+id/input_case_type"
+            android:id="@+id/input_medical_records_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/type"
@@ -120,10 +120,10 @@
         android:textSize="@dimen/large_text_size"
         android:layout_marginLeft="@dimen/space_4"
         android:layout_marginTop="@dimen/space_8"
-        android:text="@string/case_photo"/>
+        android:text="@string/medical_records_photo"/>
 
     <ImageView
-        android:id="@+id/case_image_view"
+        android:id="@+id/medical_records_image_view"
         android:layout_marginLeft="@dimen/space_8"
         android:layout_marginTop="@dimen/space_4"
         android:layout_width="140dp"

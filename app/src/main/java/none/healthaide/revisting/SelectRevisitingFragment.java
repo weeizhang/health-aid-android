@@ -33,11 +33,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import none.healthaide.R;
-import none.healthaide.data.CaseCursor;
+import none.healthaide.data.MedicalRecordsCursor;
 import none.healthaide.data.HealthAidContract;
-import none.healthaide.main.CaseListViewAdapter;
-import none.healthaide.main.RecentCaseViewHolder;
-import none.healthaide.model.Case;
+import none.healthaide.main.MedicalRecordsListViewAdapter;
+import none.healthaide.main.RecentMedicalRecordsViewHolder;
+import none.healthaide.model.MedicalRecords;
 import none.healthaide.utils.DateUtil;
 import rx.Observable;
 import rx.Subscriber;
@@ -45,19 +45,19 @@ import rx.Subscriber;
 import static rx.android.schedulers.AndroidSchedulers.mainThread;
 import static rx.schedulers.Schedulers.io;
 
-public class SelectRevisitingFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, RecentCaseViewHolder.Callback {
+public class SelectRevisitingFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, RecentMedicalRecordsViewHolder.Callback {
 
     public static final String TAG = SelectRevisitingFragment.class.getSimpleName();
-    private static final int CASE_LIST_LOADER = 0;
+    private static final int MEDICAL_RECORDS_LIST_LOADER = 0;
 
     private Unbinder unbinder;
-    private CaseListViewAdapter caseListViewAdapter;
-    private List<Case> caseList = Lists.newArrayList();
+    private MedicalRecordsListViewAdapter medicalRecordsListViewAdapter;
+    private List<MedicalRecords> medicalRecordsList = Lists.newArrayList();
 
     @BindView(R.id.toolbar_actionbar)
     Toolbar toolbar;
-    @BindView(R.id.case_list_view)
-    RecyclerView caseRecycleView;
+    @BindView(R.id.medical_records_list_view)
+    RecyclerView medicalRecordsRecycleView;
     @BindView(R.id.empty_select_revisiting_view)
     TextView emptySelectRevisitingView;
 
@@ -66,8 +66,8 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_select_revisiting, container, false);
         unbinder = ButterKnife.bind(this, view);
-        createRecentCaseView();
-        getLoaderManager().initLoader(CASE_LIST_LOADER, null, this);
+        createRecentMedicalRecordsView();
+        getLoaderManager().initLoader(MEDICAL_RECORDS_LIST_LOADER, null, this);
         return view;
     }
 
@@ -84,7 +84,7 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
     }
 
     @Override
-    public void onCaseSelected(final Integer caseId) {
+    public void onMedicalRecordsSelected(final Integer medicalRecordsId) {
         toolbar.setTitle(getString(R.string.select_revisiting_date));
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 getActivity(),
@@ -93,7 +93,7 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         String date = DateUtil.dateToString(year, month + 1, day);
-                        storeNewRevisitingEvent(caseId, date);
+                        storeNewRevisitingEvent(medicalRecordsId, date);
                         getActivity().getSupportFragmentManager().popBackStack();
                     }
                 },
@@ -110,9 +110,9 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
-            case CASE_LIST_LOADER:
+            case MEDICAL_RECORDS_LIST_LOADER:
                 return new CursorLoader(
-                        getActivity(), HealthAidContract.CASE_TABLE_CONTENT_URI, null, null, null, null);
+                        getActivity(), HealthAidContract.MEDICAL_RECORDS_TABLE_CONTENT_URI, null, null, null, null);
             default:
                 return null;
         }
@@ -122,23 +122,23 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
             emptySelectRevisitingView.setVisibility(View.GONE);
-            caseRecycleView.setVisibility(View.VISIBLE);
-            caseList.clear();
+            medicalRecordsRecycleView.setVisibility(View.VISIBLE);
+            medicalRecordsList.clear();
             do {
-                CaseCursor caseCursor = new CaseCursor(data);
-                caseList.add(new Case()
-                        .setId(caseCursor.getId())
-                        .setTitle(caseCursor.getTitle())
-                        .setStartDate(caseCursor.getStartDate())
-                        .setCaseDescribe(caseCursor.getCaseDescribe())
-                        .setHospital(caseCursor.getHospital())
-                        .setDoctor(caseCursor.getDoctor()));
+                MedicalRecordsCursor medicalRecordsCursor = new MedicalRecordsCursor(data);
+                medicalRecordsList.add(new MedicalRecords()
+                        .setId(medicalRecordsCursor.getId())
+                        .setTitle(medicalRecordsCursor.getTitle())
+                        .setStartDate(medicalRecordsCursor.getStartDate())
+                        .setMedicalRecordsDescribe(medicalRecordsCursor.getMedicalRecordsDescribe())
+                        .setHospital(medicalRecordsCursor.getHospital())
+                        .setDoctor(medicalRecordsCursor.getDoctor()));
             } while (data.moveToNext());
 
-            caseListViewAdapter.setCaseList(caseList);
-            caseListViewAdapter.notifyDataSetChanged();
+            medicalRecordsListViewAdapter.setMedicalRecordsList(medicalRecordsList);
+            medicalRecordsListViewAdapter.notifyDataSetChanged();
         } else {
-            caseRecycleView.setVisibility(View.GONE);
+            medicalRecordsRecycleView.setVisibility(View.GONE);
             emptySelectRevisitingView.setVisibility(View.VISIBLE);
         }
     }
@@ -154,19 +154,19 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     }
 
-    private void createRecentCaseView() {
-        caseRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        caseListViewAdapter = new CaseListViewAdapter(getActivity(), caseList, this);
-        caseRecycleView.setAdapter(caseListViewAdapter);
+    private void createRecentMedicalRecordsView() {
+        medicalRecordsRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        medicalRecordsListViewAdapter = new MedicalRecordsListViewAdapter(getActivity(), medicalRecordsList, this);
+        medicalRecordsRecycleView.setAdapter(medicalRecordsListViewAdapter);
     }
 
-    private void storeNewRevisitingEvent(final Integer caseId, final String date) {
+    private void storeNewRevisitingEvent(final Integer medicalRecordsId, final String date) {
         Observable.create(new Observable.OnSubscribe<Long>() {
 
             @Override
             public void call(Subscriber<? super Long> subscriber) {
                 ContentValues values = new ContentValues();
-                values.put(HealthAidContract.RevisitingEventEntry.COLUMN_NAME_CASE_ID, caseId);
+                values.put(HealthAidContract.RevisitingEventEntry.COLUMN_NAME_MEDICAL_RECORDS_ID, medicalRecordsId);
                 values.put(HealthAidContract.RevisitingEventEntry.COLUMN_NAME_REVISITING_DATE, date);
                 Uri uri = getContext().getContentResolver().insert(HealthAidContract.REVISITING_EVENT_TABLE_CONTENT_URI, values);
                 if (uri != null) {

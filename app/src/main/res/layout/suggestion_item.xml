@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/suggestion_case_title"
+        android:id="@+id/suggestion_medical_records_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/space_4"
@@ -13,7 +13,7 @@
         android:paddingTop="@dimen/space_4" />
 
     <TextView
-        android:id="@+id/suggestion_case_date"
+        android:id="@+id/suggestion_medical_records_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/space_4"

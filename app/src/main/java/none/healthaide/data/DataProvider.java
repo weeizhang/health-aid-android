@@ -10,12 +10,12 @@ import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-import none.healthaide.data.HealthAidContract.CaseEntry;
+import none.healthaide.data.HealthAidContract.MedicalRecordsEntry;
 import none.healthaide.data.HealthAidContract.RevisitingEventEntry;
 
 public class DataProvider extends ContentProvider {
 
-    public static final int CASE_QUERY = 1;
+    public static final int MEDICAL_RECORDS_QUERY = 1;
     public static final int REVISITING_EVENT_QUERY = 2;
 
     private static final UriMatcher uriMatcher;
@@ -28,8 +28,8 @@ public class DataProvider extends ContentProvider {
 
         uriMatcher.addURI(
                 HealthAidContract.AUTHORITY,
-                CaseEntry.TABLE_NAME,
-                CASE_QUERY);
+                MedicalRecordsEntry.TABLE_NAME,
+                MEDICAL_RECORDS_QUERY);
         uriMatcher.addURI(
                 HealthAidContract.AUTHORITY,
                 RevisitingEventEntry.TABLE_NAME,
@@ -93,15 +93,15 @@ public class DataProvider extends ContentProvider {
         QueryParams params = new QueryParams();
         int matchedId = uriMatcher.match(uri);
         switch (matchedId) {
-            case CASE_QUERY:
-                params.table = CaseEntry.TABLE_NAME;
-                params.tablesWithJoins = CaseEntry.TABLE_NAME;
+            case MEDICAL_RECORDS_QUERY:
+                params.table = MedicalRecordsEntry.TABLE_NAME;
+                params.tablesWithJoins = MedicalRecordsEntry.TABLE_NAME;
                 params.selection = selection;
                 break;
             case REVISITING_EVENT_QUERY:
                 params.table = RevisitingEventEntry.TABLE_NAME;
                 params.tablesWithJoins = RevisitingEventEntry.TABLE_NAME;
-                params.tablesWithJoins += " JOIN " + CaseEntry.TABLE_NAME + " ON " + CaseEntry.TABLE_NAME + "." + CaseEntry._ID + "=" + RevisitingEventEntry.TABLE_NAME + "." + RevisitingEventEntry.COLUMN_NAME_CASE_ID;
+                params.tablesWithJoins += " JOIN " + MedicalRecordsEntry.TABLE_NAME + " ON " + MedicalRecordsEntry.TABLE_NAME + "." + MedicalRecordsEntry._ID + "=" + RevisitingEventEntry.TABLE_NAME + "." + RevisitingEventEntry.COLUMN_NAME_MEDICAL_RECORDS_ID;
                 break;
             default:
                 throw new IllegalArgumentException("The uri '" + uri + "' is not supported by this ContentProvider");

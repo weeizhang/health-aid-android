@@ -6,7 +6,7 @@
         <item>@drawable/ic_account_circle_black_48dp</item>
     </array>
     <array name="feature_label">
-        <item>@string/new_case</item>
+        <item>@string/new_medical_records</item>
         <item>@string/revisiting_event</item>
         <item>@string/me</item>
     </array>

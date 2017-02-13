@@ -4,18 +4,18 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import none.healthaide.data.HealthAidContract.MedicalRecordsEntry;
-import none.healthaide.data.HealthAidContract.RevisitingEventEntry;
 
-public class RevisitingCursor extends CursorWrapper {
+public class MedicalRecordsCursor extends CursorWrapper {
     private Cursor cursor;
-    public RevisitingCursor(Cursor cursor) {
+
+    public MedicalRecordsCursor(Cursor cursor) {
         super(cursor);
         this.cursor = cursor;
     }
 
-    public String getRevisitingDate() {
-        int columnIndex = cursor.getColumnIndex(RevisitingEventEntry.COLUMN_NAME_REVISITING_DATE);
-        return getString(columnIndex);
+    public Integer getId() {
+        int columnIndex = cursor.getColumnIndex(MedicalRecordsEntry._ID);
+        return getInt(columnIndex);
     }
 
     public String getTitle() {
@@ -33,12 +33,12 @@ public class RevisitingCursor extends CursorWrapper {
         return getString(columnIndex);
     }
 
-    public String getCaseDescribe() {
+    public String getMedicalRecordsDescribe() {
         int columnIndex = cursor.getColumnIndex(MedicalRecordsEntry.COLUMN_NAME_DESCRIPTION);
         return getString(columnIndex);
     }
 
-    public String getCaseType() {
+    public String getMedicalRecordsType() {
         int columnIndex = cursor.getColumnIndex(MedicalRecordsEntry.COLUMN_NAME_TYPE);
         return getString(columnIndex);
     }
@@ -55,6 +55,11 @@ public class RevisitingCursor extends CursorWrapper {
 
     public String getDoctor() {
         int columnIndex = cursor.getColumnIndex(MedicalRecordsEntry.COLUMN_NAME_DOCTOR);
+        return getString(columnIndex);
+    }
+
+    public String getPhotoUriStr() {
+        int columnIndex = cursor.getColumnIndex(MedicalRecordsEntry.COLUMN_NAME_PHOTO_URI);
         return getString(columnIndex);
     }
 }

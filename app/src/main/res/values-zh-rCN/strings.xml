@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="new_case">新病例</string>
+    <string name="new_medical_records">新病例</string>
     <string name="revisiting_event">复诊提醒</string>
     <string name="allergy_history">过敏史</string>
-    <string name="export_case">导出病例</string>
+    <string name="export_medical_records">导出病例</string>
     <string name="me">我</string>
     <string name="app_name">健康管家</string>
     <string name="doctor">医生</string>
     <string name="end_date">康复时间</string>
-    <string name="filter_case">过滤病例</string>
+    <string name="filter_medical_records">过滤病例</string>
     <string name="hospital">医院</string>
-    <string name="recent_case">近期病例</string>
+    <string name="recent_medical_records">近期病例</string>
     <string name="start_date">开始时间</string>
     <string name="submit">提交</string>
     <string name="symptom">症状</string>
@@ -18,12 +18,12 @@
     <string name="title">标题</string>
     <string name="type">类型</string>
     <string name="revisiting_date">复诊日期</string>
-    <string name="case_detail">病例详情</string>
-    <string name="case_photo">病例照片</string>
+    <string name="medical_records_detail">病例详情</string>
+    <string name="medical_records_photo">病例照片</string>
     <string name="select_picture">选择照片</string>
 
-    <string name="search_case">搜索病例</string>
-    <string name="empty_case_prompt_message">您还没有添加病例，请点击上方\'新病例\'添加您的病例。</string>
+    <string name="search_medical_records">搜索病例</string>
+    <string name="empty_medical_records_prompt_message">您还没有添加病例，请点击上方\'新病例\'添加您的病例。</string>
     <string name="empty_revisiting_prompt_message">您还没有添加复诊提醒，请点击下方按钮添加您的复诊提醒。</string>
     <string name="empty_select_revisiting_prompt_message">您还没有添加病例，请在首页先添加病例。</string>
 

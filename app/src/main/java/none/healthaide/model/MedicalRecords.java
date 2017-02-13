@@ -3,26 +3,26 @@ package none.healthaide.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Case implements Parcelable {
+public class MedicalRecords implements Parcelable {
     private Integer id;
     private String title;
     private String startDate;
     private String endDate;
-    private String caseDescribe;
-    private String caseType;
+    private String medicalRecordsDescribe;
+    private String medicalRecordsType;
     private String cureDescription;
     private String hospital;
     private String doctor;
     private String revisitingDate;
     private String photoUriStr;
 
-    protected Case(Parcel in) {
+    protected MedicalRecords(Parcel in) {
         id = in.readInt();
         title = in.readString();
         startDate = in.readString();
         endDate = in.readString();
-        caseDescribe = in.readString();
-        caseType = in.readString();
+        medicalRecordsDescribe = in.readString();
+        medicalRecordsType = in.readString();
         cureDescription = in.readString();
         hospital = in.readString();
         doctor = in.readString();
@@ -30,18 +30,18 @@ public class Case implements Parcelable {
         photoUriStr = in.readString();
     }
 
-    public Case() {
+    public MedicalRecords() {
     }
 
-    public static final Creator<Case> CREATOR = new Creator<Case>() {
+    public static final Creator<MedicalRecords> CREATOR = new Creator<MedicalRecords>() {
         @Override
-        public Case createFromParcel(Parcel in) {
-            return new Case(in);
+        public MedicalRecords createFromParcel(Parcel in) {
+            return new MedicalRecords(in);
         }
 
         @Override
-        public Case[] newArray(int size) {
-            return new Case[size];
+        public MedicalRecords[] newArray(int size) {
+            return new MedicalRecords[size];
         }
     };
 
@@ -49,7 +49,7 @@ public class Case implements Parcelable {
         return id;
     }
 
-    public Case setId(Integer id) {
+    public MedicalRecords setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -58,7 +58,7 @@ public class Case implements Parcelable {
         return title;
     }
 
-    public Case setTitle(String title) {
+    public MedicalRecords setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -67,7 +67,7 @@ public class Case implements Parcelable {
         return startDate;
     }
 
-    public Case setStartDate(String startDate) {
+    public MedicalRecords setStartDate(String startDate) {
         this.startDate = startDate;
         return this;
     }
@@ -76,26 +76,26 @@ public class Case implements Parcelable {
         return endDate;
     }
 
-    public Case setEndDate(String endDate) {
+    public MedicalRecords setEndDate(String endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    public String getCaseDescribe() {
-        return caseDescribe;
+    public String getMedicalRecordsDescribe() {
+        return medicalRecordsDescribe;
     }
 
-    public Case setCaseDescribe(String caseDescribe) {
-        this.caseDescribe = caseDescribe;
+    public MedicalRecords setMedicalRecordsDescribe(String medicalRecordsDescribe) {
+        this.medicalRecordsDescribe = medicalRecordsDescribe;
         return this;
     }
 
-    public String getCaseType() {
-        return caseType;
+    public String getMedicalRecordsType() {
+        return medicalRecordsType;
     }
 
-    public Case setCaseType(String caseType) {
-        this.caseType = caseType;
+    public MedicalRecords setMedicalRecordsType(String medicalRecordsType) {
+        this.medicalRecordsType = medicalRecordsType;
         return this;
     }
 
@@ -103,7 +103,7 @@ public class Case implements Parcelable {
         return cureDescription;
     }
 
-    public Case setCureDescription(String cureDescription) {
+    public MedicalRecords setCureDescription(String cureDescription) {
         this.cureDescription = cureDescription;
         return this;
     }
@@ -112,7 +112,7 @@ public class Case implements Parcelable {
         return hospital;
     }
 
-    public Case setHospital(String hospital) {
+    public MedicalRecords setHospital(String hospital) {
         this.hospital = hospital;
         return this;
     }
@@ -121,7 +121,7 @@ public class Case implements Parcelable {
         return doctor;
     }
 
-    public Case setDoctor(String doctor) {
+    public MedicalRecords setDoctor(String doctor) {
         this.doctor = doctor;
         return this;
     }
@@ -130,7 +130,7 @@ public class Case implements Parcelable {
         return revisitingDate;
     }
 
-    public Case setRevisitingDate(String revisitingDate) {
+    public MedicalRecords setRevisitingDate(String revisitingDate) {
         this.revisitingDate = revisitingDate;
         return this;
     }
@@ -139,7 +139,7 @@ public class Case implements Parcelable {
         return photoUriStr;
     }
 
-    public Case setPhotoUriStr(String photoUriStr) {
+    public MedicalRecords setPhotoUriStr(String photoUriStr) {
         this.photoUriStr = photoUriStr;
         return this;
     }
@@ -155,8 +155,8 @@ public class Case implements Parcelable {
         parcel.writeString(title);
         parcel.writeString(startDate);
         parcel.writeString(endDate);
-        parcel.writeString(caseDescribe);
-        parcel.writeString(caseType);
+        parcel.writeString(medicalRecordsDescribe);
+        parcel.writeString(medicalRecordsType);
         parcel.writeString(cureDescription);
         parcel.writeString(hospital);
         parcel.writeString(doctor);

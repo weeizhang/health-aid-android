@@ -23,10 +23,10 @@
             android:paddingBottom="@dimen/space_8">
 
             <include
-                layout="@layout/case_detail_view" />
+                layout="@layout/medical_records_detail_view" />
 
             <Button
-                android:id="@+id/new_case_submit_button"
+                android:id="@+id/new_medical_records_submit_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/new_case_button_height"
                 android:layout_marginTop="@dimen/new_case_button_margin_top"

@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_new_case"
+        android:id="@+id/action_new_medical_records"
         android:icon="@drawable/ic_add_white_24dp"
-        android:title="@string/new_case"
+        android:title="@string/new_medical_records"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_filter_case"
-        android:title="@string/filter_case"
+        android:id="@+id/action_filter_medical_records"
+        android:title="@string/filter_medical_records"
         android:icon="@drawable/ic_filter_list_white_24dp"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />

@@ -37,17 +37,17 @@
                 android:paddingRight="@dimen/space_16"
                 android:paddingTop="@dimen/space_16"
                 android:textSize="@dimen/large_text_size"
-                android:text="@string/recent_case"
+                android:text="@string/recent_medical_records"
                 android:textColor="@color/colorGrey" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/case_list_view"
+                android:id="@+id/medical_records_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/space_16" />
 
             <TextView
-                android:id="@+id/empty_case_view"
+                android:id="@+id/empty_medical_records_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="30dp"
@@ -55,7 +55,7 @@
                 android:paddingRight="@dimen/space_16"
                 android:visibility="gone"
                 android:textSize="@dimen/large_text_size"
-                android:text="@string/empty_case_prompt_message"/>
+                android:text="@string/empty_medical_records_prompt_message"/>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

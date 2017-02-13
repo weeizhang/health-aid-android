@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import none.healthaide.data.HealthAidContract.CaseEntry;
+import none.healthaide.data.HealthAidContract.MedicalRecordsEntry;
 import none.healthaide.data.HealthAidContract.RevisitingEventEntry;
 
 public class HealthAidDbHelper extends SQLiteOpenHelper {
@@ -19,29 +19,29 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_CASE =
-            "CREATE TABLE " + CaseEntry.TABLE_NAME + " (" +
-                    CaseEntry._ID + " INTEGER PRIMARY KEY," +
-                    CaseEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_START_DATE + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_END_DATE + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_HOSPITAL + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_DOCTOR + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
-                    CaseEntry.COLUMN_NAME_PHOTO_URI + TEXT_TYPE +
+            "CREATE TABLE " + MedicalRecordsEntry.TABLE_NAME + " (" +
+                    MedicalRecordsEntry._ID + " INTEGER PRIMARY KEY," +
+                    MedicalRecordsEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_START_DATE + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_END_DATE + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_HOSPITAL + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_DOCTOR + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_TYPE + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_CURE_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_PHOTO_URI + TEXT_TYPE +
                     " )";
 
     private static final String SQL_DELETE_CASE =
-            "DROP TABLE IF EXISTS " + CaseEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + MedicalRecordsEntry.TABLE_NAME;
 
     private static final String SQL_CREATE_REVISITING_EVNET =
             "CREATE TABLE " + RevisitingEventEntry.TABLE_NAME + " (" +
                     RevisitingEventEntry._ID + " INTEGER PRIMARY KEY," +
-                    RevisitingEventEntry.COLUMN_NAME_CASE_ID + INTEGER_TYPE + COMMA_SEP +
+                    RevisitingEventEntry.COLUMN_NAME_MEDICAL_RECORDS_ID + INTEGER_TYPE + COMMA_SEP +
                     RevisitingEventEntry.COLUMN_NAME_REVISITING_DATE + TEXT_TYPE + COMMA_SEP +
-                    "FOREIGN KEY(" + RevisitingEventEntry.COLUMN_NAME_CASE_ID + ") REFERENCES "
-                    + CaseEntry.TABLE_NAME + "(" + CaseEntry._ID + ")" +
+                    "FOREIGN KEY(" + RevisitingEventEntry.COLUMN_NAME_MEDICAL_RECORDS_ID + ") REFERENCES "
+                    + MedicalRecordsEntry.TABLE_NAME + "(" + MedicalRecordsEntry._ID + ")" +
                     " )";
 
     private static final String SQL_DELETE_REVISITING_EVNET =

@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import none.healthaide.R;
-import none.healthaide.model.Case;
+import none.healthaide.model.MedicalRecords;
 
 public class RevisitingListViewAdapter extends RecyclerView.Adapter<RevisitingViewHolder> {
 
     private Context context;
-    private List<Case> caseList;
+    private List<MedicalRecords> medicalRecordsList;
 
-    public RevisitingListViewAdapter(Context context, List<Case> caseList) {
+    public RevisitingListViewAdapter(Context context, List<MedicalRecords> medicalRecordsList) {
         this.context = context;
-        this.caseList = caseList;
+        this.medicalRecordsList = medicalRecordsList;
     }
 
     @Override
@@ -27,15 +27,15 @@ public class RevisitingListViewAdapter extends RecyclerView.Adapter<RevisitingVi
 
     @Override
     public void onBindViewHolder(RevisitingViewHolder holder, int position) {
-        holder.populate(caseList.get(position));
+        holder.populate(medicalRecordsList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return caseList.size();
+        return medicalRecordsList.size();
     }
 
-    public void setCaseList(List<Case> caseList) {
-        this.caseList = caseList;
+    public void setMedicalRecordsList(List<MedicalRecords> medicalRecordsList) {
+        this.medicalRecordsList = medicalRecordsList;
     }
 }

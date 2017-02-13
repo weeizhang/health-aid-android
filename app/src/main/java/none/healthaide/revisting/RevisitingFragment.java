@@ -31,7 +31,7 @@ import none.healthaide.MainActivity;
 import none.healthaide.R;
 import none.healthaide.data.HealthAidContract;
 import none.healthaide.data.RevisitingCursor;
-import none.healthaide.model.Case;
+import none.healthaide.model.MedicalRecords;
 
 public class RevisitingFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -50,7 +50,7 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
     TextView revisitingEmptyView;
 
     private RevisitingListViewAdapter revisitingListViewAdapter;
-    private List<Case> caseList = Lists.newArrayList();
+    private List<MedicalRecords> medicalRecordsList = Lists.newArrayList();
 
     @Override
     public void onAttach(Context context) {
@@ -73,7 +73,7 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
 
     private void createRevisitingEventView() {
         revisitingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        revisitingListViewAdapter = new RevisitingListViewAdapter(getActivity(), caseList);
+        revisitingListViewAdapter = new RevisitingListViewAdapter(getActivity(), medicalRecordsList);
         revisitingRecyclerView.setAdapter(revisitingListViewAdapter);
     }
 
@@ -116,19 +116,19 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
         if (data != null && data.moveToFirst()) {
             revisitingEmptyView.setVisibility(View.GONE);
             revisitingRecyclerView.setVisibility(View.VISIBLE);
-            caseList.clear();
+            medicalRecordsList.clear();
             do {
                 RevisitingCursor revisitingCursor = new RevisitingCursor(data);
-                caseList.add(new Case()
+                medicalRecordsList.add(new MedicalRecords()
                         .setRevisitingDate(revisitingCursor.getRevisitingDate())
                         .setTitle(revisitingCursor.getTitle())
                         .setStartDate(revisitingCursor.getStartDate())
-                        .setCaseDescribe(revisitingCursor.getCaseDescribe())
+                        .setMedicalRecordsDescribe(revisitingCursor.getCaseDescribe())
                         .setHospital(revisitingCursor.getHospital())
                         .setDoctor(revisitingCursor.getDoctor()));
             } while (data.moveToNext());
 
-            revisitingListViewAdapter.setCaseList(caseList);
+            revisitingListViewAdapter.setMedicalRecordsList(medicalRecordsList);
             revisitingListViewAdapter.notifyDataSetChanged();
         } else {
             revisitingRecyclerView.setVisibility(View.GONE);

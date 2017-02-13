@@ -16,10 +16,10 @@ import none.healthaide.data.HealthAidContract;
 
 public class SuggestionAdapter extends CursorAdapter {
 
-    @BindView(R.id.suggestion_case_title)
-    TextView suggestionCaseTitleTextView;
-    @BindView(R.id.suggestion_case_date)
-    TextView suggestionCaseDateTextView;
+    @BindView(R.id.suggestion_medical_records_title)
+    TextView suggestionMedicalRecordsTitleTextView;
+    @BindView(R.id.suggestion_medical_records_date)
+    TextView suggestionMedicalRecordsDateTextView;
 
     public SuggestionAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
@@ -33,7 +33,7 @@ public class SuggestionAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ButterKnife.bind(this, view);
-        suggestionCaseTitleTextView.setText(cursor.getString(cursor.getColumnIndex(HealthAidContract.CaseEntry.COLUMN_NAME_TITLE)));
-        suggestionCaseDateTextView.setText(cursor.getString(cursor.getColumnIndex(HealthAidContract.CaseEntry.COLUMN_NAME_START_DATE)));
+        suggestionMedicalRecordsTitleTextView.setText(cursor.getString(cursor.getColumnIndex(HealthAidContract.MedicalRecordsEntry.COLUMN_NAME_TITLE)));
+        suggestionMedicalRecordsDateTextView.setText(cursor.getString(cursor.getColumnIndex(HealthAidContract.MedicalRecordsEntry.COLUMN_NAME_START_DATE)));
     }
 }
