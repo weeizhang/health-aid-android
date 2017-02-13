@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.common.collect.Lists;
@@ -59,6 +60,8 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     GridView featureGridView;
     @BindView(R.id.case_list_view)
     RecyclerView caseRecycleView;
+    @BindView(R.id.empty_case_view)
+    TextView emptyCaseView;
 
     private SearchView searchView;
     private SuggestionAdapter suggestionAdapter;
@@ -165,6 +168,8 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         switch (loader.getId()) {
             case NEW_CASE_INDEX:
                 if (data != null && data.moveToFirst()) {
+                    caseRecycleView.setVisibility(View.VISIBLE);
+                    emptyCaseView.setVisibility(View.GONE);
                     caseList.clear();
                     do {
                         CaseCursor caseCursor = new CaseCursor(data);
@@ -178,6 +183,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
                     } while (data.moveToNext());
                     caseListViewAdapter.setCaseList(caseList);
                     caseListViewAdapter.notifyDataSetChanged();
+                } else {
+                    caseRecycleView.setVisibility(View.GONE);
+                    emptyCaseView.setVisibility(View.VISIBLE);
                 }
                 break;
             case SUGGESTION_LIST_LOADER:

@@ -15,6 +15,18 @@
         android:layout_below="@id/tool_bar"
         android:paddingBottom="@dimen/space_16" />
 
+    <TextView
+        android:id="@+id/empty_revisiting_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar"
+        android:paddingTop="30dp"
+        android:paddingLeft="@dimen/space_16"
+        android:paddingRight="@dimen/space_16"
+        android:visibility="gone"
+        android:textSize="@dimen/large_text_size"
+        android:text="@string/empty_revisiting_prompt_message"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_revisiting_event_button"
         android:layout_width="wrap_content"

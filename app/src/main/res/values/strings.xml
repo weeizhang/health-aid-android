@@ -8,6 +8,9 @@
     <string name="me">Me</string>
 
     <string name="search_case">Search Case</string>
+    <string name="empty_case_prompt_message">Please add your case!</string>
+    <string name="empty_revisiting_prompt_message">Please add your revisiting event!</string>
+    <string name="empty_select_revisiting_prompt_message">Please add your case first!</string>
 
     <!--New Case-->
     <string name="symptom">Symptom</string>
@@ -17,7 +20,7 @@
     <string name="doctor">Doctor</string>
     <string name="title">Title</string>
     <string name="start_date">Start date</string>
-    <string name="end_date">End date</string>
+    <string name="end_date">End date</string>firs
     <string name="submit">Submit</string>
     <string name="recent_case">Recent Case</string>
     <string name="revisiting_date">Revisiting Date</string>

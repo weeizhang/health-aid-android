@@ -14,4 +14,15 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/space_16" />
 
+    <TextView
+        android:id="@+id/empty_select_revisiting_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingLeft="@dimen/space_16"
+        android:paddingRight="@dimen/space_16"
+        android:visibility="gone"
+        android:textSize="@dimen/large_text_size"
+        android:text="@string/empty_select_revisiting_prompt_message"/>
+
 </LinearLayout>

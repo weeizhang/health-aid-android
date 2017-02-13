@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.common.collect.Lists;
 
@@ -45,6 +46,8 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
     RecyclerView revisitingRecyclerView;
     @BindView(R.id.add_revisiting_event_button)
     FloatingActionButton addButton;
+    @BindView(R.id.empty_revisiting_view)
+    TextView revisitingEmptyView;
 
     private RevisitingListViewAdapter revisitingListViewAdapter;
     private List<Case> caseList = Lists.newArrayList();
@@ -111,6 +114,8 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
+            revisitingEmptyView.setVisibility(View.GONE);
+            revisitingRecyclerView.setVisibility(View.VISIBLE);
             caseList.clear();
             do {
                 RevisitingCursor revisitingCursor = new RevisitingCursor(data);
@@ -125,6 +130,9 @@ public class RevisitingFragment extends Fragment implements LoaderManager.Loader
 
             revisitingListViewAdapter.setCaseList(caseList);
             revisitingListViewAdapter.notifyDataSetChanged();
+        } else {
+            revisitingRecyclerView.setVisibility(View.GONE);
+            revisitingEmptyView.setVisibility(View.VISIBLE);
         }
     }
 

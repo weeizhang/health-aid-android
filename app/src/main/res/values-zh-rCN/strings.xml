@@ -23,6 +23,9 @@
     <string name="select_picture">选择照片</string>
 
     <string name="search_case">搜索病例</string>
+    <string name="empty_case_prompt_message">您还没有添加病例，请点击上方\'新病例\'添加您的病例。</string>
+    <string name="empty_revisiting_prompt_message">您还没有添加复诊提醒，请点击下方按钮添加您的复诊提醒。</string>
+    <string name="empty_select_revisiting_prompt_message">您还没有添加病例，请在首页先添加病例。</string>
 
     <!-- Revisiting -->
     <string name="select_revisiting">选择要添加复诊提醒的病例</string>

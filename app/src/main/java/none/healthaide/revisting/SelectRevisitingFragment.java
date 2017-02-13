@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.common.collect.Lists;
@@ -57,6 +58,8 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
     Toolbar toolbar;
     @BindView(R.id.case_list_view)
     RecyclerView caseRecycleView;
+    @BindView(R.id.empty_select_revisiting_view)
+    TextView emptySelectRevisitingView;
 
     @Nullable
     @Override
@@ -118,6 +121,8 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
+            emptySelectRevisitingView.setVisibility(View.GONE);
+            caseRecycleView.setVisibility(View.VISIBLE);
             caseList.clear();
             do {
                 CaseCursor caseCursor = new CaseCursor(data);
@@ -132,6 +137,9 @@ public class SelectRevisitingFragment extends Fragment implements LoaderManager.
 
             caseListViewAdapter.setCaseList(caseList);
             caseListViewAdapter.notifyDataSetChanged();
+        } else {
+            caseRecycleView.setVisibility(View.GONE);
+            emptySelectRevisitingView.setVisibility(View.VISIBLE);
         }
     }
 
