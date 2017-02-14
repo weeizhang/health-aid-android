@@ -220,7 +220,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.length() > 1) {
+                if (newText.length() > 0) {
                     Bundle data = new Bundle();
                     data.putString(QUERY, newText);
                     getLoaderManager().restartLoader(SUGGESTION_LIST_LOADER, data, MainFragment.this);
