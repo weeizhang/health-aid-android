@@ -10,14 +10,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import none.healthaide.R;
+import none.healthaide.utils.ProgressBarUtil;
 
 public class WebViewFragment extends Fragment {
 
@@ -32,6 +35,8 @@ public class WebViewFragment extends Fragment {
     ViewGroup webViewContainer;
     @BindView(R.id.webview)
     WebView webView;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     private String title;
     private String url;
@@ -92,12 +97,31 @@ public class WebViewFragment extends Fragment {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                progressBar.setVisibility(View.VISIBLE);
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+            }
+        });
+
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                ProgressBarUtil.setProgressBarValue(progressBar, newProgress);
+                if (newProgress >= ProgressBarUtil.MAX_PROGRESS_BAR_VALUE) {
+                    ProgressBarUtil.hideProgressBarAfterDelay(progressBar);
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
             }
         });
     }
