@@ -104,7 +104,7 @@ public class MeFragment extends Fragment {
                 }
                 if (age > 0) {
                     PreferencesUtil.setUserAge(age);
-                    ageTextView.setText(age);
+                    ageTextView.setText(String.format("%1$d", age));
                 }
             }
         };
@@ -125,7 +125,7 @@ public class MeFragment extends Fragment {
                 }
                 if (height > 0) {
                     PreferencesUtil.setUserHeight(height);
-                    heightTextView.setText(height);
+                    heightTextView.setText(String.format("%1$d cm", height));
                 }
             }
         };
@@ -146,7 +146,7 @@ public class MeFragment extends Fragment {
                 }
                 if (weight > 0) {
                     PreferencesUtil.setUserWeight(weight);
-                    weightTextView.setText(weight);
+                    weightTextView.setText(String.format("%1$d kg", weight));
                 }
             }
         };
