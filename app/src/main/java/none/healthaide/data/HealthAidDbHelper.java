@@ -18,10 +18,11 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
     private static final String INTEGER_TYPE = " INTEGER";
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
+    private static final String NOT_NULL = " NOT NULL";
     private static final String SQL_CREATE_CASE =
             "CREATE TABLE " + MedicalRecordsEntry.TABLE_NAME + " (" +
                     MedicalRecordsEntry._ID + " INTEGER PRIMARY KEY," +
-                    MedicalRecordsEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
+                    MedicalRecordsEntry.COLUMN_NAME_TITLE + TEXT_TYPE + NOT_NULL + COMMA_SEP +
                     MedicalRecordsEntry.COLUMN_NAME_START_DATE + TEXT_TYPE + COMMA_SEP +
                     MedicalRecordsEntry.COLUMN_NAME_END_DATE + TEXT_TYPE + COMMA_SEP +
                     MedicalRecordsEntry.COLUMN_NAME_HOSPITAL + TEXT_TYPE + COMMA_SEP +

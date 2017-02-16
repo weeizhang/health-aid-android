@@ -35,8 +35,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import none.healthaide.MainActivity;
 import none.healthaide.R;
-import none.healthaide.data.MedicalRecordsCursor;
 import none.healthaide.data.HealthAidContract;
+import none.healthaide.data.MedicalRecordsCursor;
 import none.healthaide.me.MeFragment;
 import none.healthaide.model.MedicalRecords;
 import none.healthaide.revisting.RevisitingFragment;
@@ -237,7 +237,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
             @Override
             public boolean onSuggestionClick(int position) {
                 Cursor cursor = suggestionAdapter.getCursor();
-                if(cursor != null && cursor.moveToPosition(position)) {
+                if (cursor != null && cursor.moveToPosition(position)) {
                     showMedicalRecordsDetailFragment(cursor.getInt(cursor.getColumnIndex(HealthAidContract.MedicalRecordsEntry._ID)));
                 }
                 return false;
