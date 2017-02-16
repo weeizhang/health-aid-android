@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.common.base.Strings;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import butterknife.BindView;
@@ -117,7 +118,7 @@ public class MedicalRecordsDetailFragment extends Fragment implements LoaderMana
                     .subscribe(new Action1<Boolean>() {
                         @Override
                         public void call(Boolean granted) {
-                            if (granted) {
+                            if (granted && !Strings.isNullOrEmpty(medicalRecordsCursor.getPhotoUriStr())) {
                                 photoImageView.setImageURI(Uri.parse(medicalRecordsCursor.getPhotoUriStr()));
                             } else {
                                 //Todo: change image resource when permission deny
