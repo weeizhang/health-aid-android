@@ -39,8 +39,8 @@ public class HealthAidDbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_REVISITING_EVNET =
             "CREATE TABLE " + RevisitingEventEntry.TABLE_NAME + " (" +
                     RevisitingEventEntry._ID + " INTEGER PRIMARY KEY," +
-                    RevisitingEventEntry.COLUMN_NAME_MEDICAL_RECORDS_ID + INTEGER_TYPE + COMMA_SEP +
-                    RevisitingEventEntry.COLUMN_NAME_REVISITING_DATE + TEXT_TYPE + COMMA_SEP +
+                    RevisitingEventEntry.COLUMN_NAME_MEDICAL_RECORDS_ID + INTEGER_TYPE + NOT_NULL + COMMA_SEP +
+                    RevisitingEventEntry.COLUMN_NAME_REVISITING_DATE + TEXT_TYPE + NOT_NULL + COMMA_SEP +
                     "FOREIGN KEY(" + RevisitingEventEntry.COLUMN_NAME_MEDICAL_RECORDS_ID + ") REFERENCES "
                     + MedicalRecordsEntry.TABLE_NAME + "(" + MedicalRecordsEntry._ID + ")" +
                     " )";
